@@ -1,207 +1,242 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  Phone, 
-  MessageCircle, 
-  MapPin, 
-  ShieldCheck, 
-  Wifi, 
-  Utensils, 
-  Sparkles, 
-  CheckCircle2, 
-  Clock, 
-  ChevronDown, 
-  ChevronUp, 
-  Calendar, 
-  User, 
-  Tv, 
-  Layers, 
-  Zap, 
-  Camera, 
-  Heart, 
-  ExternalLink, 
-  ChevronRight, 
-  Droplet, 
-  X, 
-  Check, 
-  Flame, 
+import React, { useState, useMemo } from "react";
+import {
+  Phone,
+  MessageCircle,
+  MapPin,
+  ShieldCheck,
+  Wifi,
+  Utensils,
+  Sparkles,
+  CheckCircle2,
+  Clock,
+  ChevronDown,
+  ChevronUp,
+  Calendar,
+  User,
+  Tv,
+  Layers,
+  Zap,
+  Camera,
+  Heart,
+  ExternalLink,
+  ChevronRight,
+  Droplet,
+  X,
+  Check,
+  Flame,
   Coffee,
-  Percent
-} from 'lucide-react';
+  Percent,
+} from "lucide-react";
 
 // Image 4 uploaded by user: Building facade with glass panels and wooden finish
-const BUILDING_IMAGE = "file_0000000035f07207aa32ca32dbc10df9.png";
-const LOGO_IMAGE = "file_00000000f798720bbea9e798e698296a.png";
-const FOOD_POSTER_IMAGE = "file_00000000593071f896902a168d63ab22.png";
-const BANNER_IMAGE = "file_00000000ed44720881ff0bff758386e1.png";
-const POSTER_IMAGE = "IMG_20260916_140636.png";
+import BUILDING_IMAGE from "./assets/Building.jpg";
+import LOGO_IMAGE from "./assets/Logo.png";
+const FOOD_POSTER_IMAGE = "";
+const BANNER_IMAGE = "";
+const POSTER_IMAGE = "";
 
 // Reliable backup in case asset environment renders outside direct bundle
-const FALLBACK_BUILDING = "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80";
+const FALLBACK_BUILDING = "/Building.jpg";
 
 const ROOM_PLANS = [
   {
-    type: '2 Sharing',
-    title: 'Double Sharing Room',
-    price: '14,000',
-    strikePrice: '₹15,500',
-    negotiableTag: 'Price is Negotiable',
-    badge: 'High Demand',
-    badgeColor: 'bg-purple-600',
-    image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80',
-    description: 'Spacious twin luxury setup with extra privacy and personal study area.',
+    type: "2 Sharing",
+    title: "Double Sharing Room",
+    price: "14,000",
+    strikePrice: "₹15,500",
+    negotiableTag: "Price is Negotiable",
+    badge: "High Demand",
+    badgeColor: "bg-purple-600",
+    image: "src/assets/2sharing.png",
+    description:
+      "Spacious twin luxury setup with extra privacy and personal study area.",
     features: [
-      'Ergonomic wooden cot with orthopaedic mattress',
-      'Individual dual-door wardrobe with personal lock',
-      'Attached bathroom with 24/7 hot water geyser',
-      'High-speed dedicated Wi-Fi router coverage',
-      '3 times homestyle daily meals (3x Non-Veg weekly)'
-    ]
+      "Ergonomic wooden cot with orthopaedic mattress",
+      "Individual dual-door wardrobe with personal lock",
+      "Attached bathroom with 24/7 hot water geyser",
+      "High-speed dedicated Wi-Fi router coverage",
+      "3 times homestyle daily meals (3x Non-Veg weekly)",
+    ],
   },
   {
-    type: '3 Sharing',
-    title: 'Triple Sharing Room',
-    price: '13,000',
-    strikePrice: '₹14,500',
-    negotiableTag: 'Price is Negotiable',
-    badge: 'Most Popular',
-    badgeColor: 'bg-[#E91E63]',
-    image: 'https://images.unsplash.com/photo-1540518614846-7ede433c4550?auto=format&fit=crop&w=800&q=80',
-    description: 'The optimal balance of social community, personal space, and value.',
+    type: "3 Sharing",
+    title: "Triple Sharing Room",
+    price: "13,000",
+    strikePrice: "₹14,500",
+    negotiableTag: "Price is Negotiable",
+    badge: "Most Popular",
+    badgeColor: "bg-[#E91E63]",
+    image: "src/assets/3sharing.png",
+    description:
+      "The optimal balance of social community, personal space, and value.",
     features: [
-      'Bright airy room with large exterior ventilation',
-      'Individual lockers, clothes racks, and shoe space',
-      'Attached private bathroom sanitized daily',
-      'Full lift access & automatic washing machine',
-      'Self-cooking facility access for tea & snacks'
-    ]
+      "Bright airy room with large exterior ventilation",
+      "Individual lockers, clothes racks, and shoe space",
+      "Attached private bathroom sanitized daily",
+      "Full lift access & automatic washing machine",
+      "Self-cooking facility access for tea & snacks",
+    ],
   },
   {
-    type: '4 Sharing',
-    title: 'Four Sharing Room',
-    price: '10,000',
-    strikePrice: '₹11,500',
-    negotiableTag: 'Price is Negotiable',
-    badge: 'Best Value',
-    badgeColor: 'bg-emerald-600',
-    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80',
-    description: 'Most pocket-friendly accommodation in Cambridge Layout Indiranagar with premium amenities.',
+    type: "4 Sharing",
+    title: "Four Sharing Room",
+    price: "10,000",
+    strikePrice: "₹11,500",
+    negotiableTag: "Price is Negotiable",
+    badge: "Best Value",
+    badgeColor: "bg-emerald-600",
+    image: "src/assets/4sharing.png",
+    description:
+      "Most pocket-friendly accommodation in Cambridge Layout Indiranagar with premium amenities.",
     features: [
-      'Affordable luxury living at prime Indiranagar location',
-      'Dedicated locked storage for each resident',
-      'Attached hygienic bathroom with continuous water',
-      'Includes 3 times South & North food daily',
-      '24/7 security guard, CCTV, and biometric access'
-    ]
-  }
+      "Affordable luxury living at prime Indiranagar location",
+      "Dedicated locked storage for each resident",
+      "Attached hygienic bathroom with continuous water",
+      "Includes 3 times South & North food daily",
+      "24/7 security guard, CCTV, and biometric access",
+    ],
+  },
 ];
 
 const AMENITIES = [
   {
-    name: 'Biometric Access',
-    desc: 'Keyless smart fingerprint entry strictly for ladies',
+    name: "Biometric Access",
+    desc: "Keyless smart fingerprint entry strictly for ladies",
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
         <path d="M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.47-5.57 1.41-.24.13-.54.04-.68-.2-.13-.24-.04-.55.2-.68C7.82 2.52 9.86 2 12.01 2c2.13 0 3.99.47 5.92 1.54.24.13.32.45.19.69-.07.15-.2.24-.31.24zm3.08 3.99c-.11 0-.22-.04-.31-.12-4.52-3.8-11.08-3.8-15.6 0-.21.18-.53.15-.71-.07-.18-.21-.15-.53.07-.71 4.97-4.18 12.18-4.18 17.15 0 .22.18.25.5.07.71-.18.12-.42.19-.67.19zM12 9c-2.76 0-5 2.24-5 5 0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-3.31 2.69-6 6-6s6 2.69 6 6c0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-2.76-2.24-5-5-5zm0 4c-1.1 0-2 .9-2 2 0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-1.65 1.35-3 3-3s3 1.35 3 3c0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-1.1-.9-2-2-2zm0 4c-.55 0-1 .45-1 1 0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-1.1.9-2 2-2s2 .9 2 2c0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-.55-.45-1-1-1z" />
       </svg>
     ),
-    badge: 'Safe & Secure'
+    badge: "Safe & Secure",
   },
   {
-    name: 'Free High-Speed Wi-Fi',
-    desc: 'Uninterrupted fiber routers on every floor for work & study',
+    name: "Free High-Speed Wi-Fi",
+    desc: "Uninterrupted fiber routers on every floor for work & study",
     icon: <Wifi className="w-6 h-6" />,
-    badge: 'Unlimited'
+    badge: "Unlimited",
   },
   {
-    name: '24/7 Security Guard',
-    desc: 'Trained stationed watchman guarding main gate round the clock',
+    name: "24/7 Security Guard",
+    desc: "Trained stationed watchman guarding main gate round the clock",
     icon: <ShieldCheck className="w-6 h-6" />,
-    badge: 'Stationed Guard'
+    badge: "Stationed Guard",
   },
   {
-    name: 'CCTV Surveillance',
-    desc: 'Continuous multi-camera monitoring on all corridors and entries',
+    name: "CCTV Surveillance",
+    desc: "Continuous multi-camera monitoring on all corridors and entries",
     icon: <Camera className="w-6 h-6" />,
-    badge: 'Full Coverage'
+    badge: "Full Coverage",
   },
   {
-    name: 'Washing Machine',
-    desc: 'High-capacity automatic washing machines with clothes drying terrace',
+    name: "Washing Machine",
+    desc: "High-capacity automatic washing machines with clothes drying terrace",
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18 2.01L6 2c-1.11 0-2 .89-2 2v16c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V4c0-1.11-.89-1.99-2-1.99zM18 20H6V4h12v16zm-6-3c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3z" />
       </svg>
     ),
-    badge: 'Free Daily Use'
+    badge: "Free Daily Use",
   },
   {
-    name: 'Refrigerator',
-    desc: 'Common refrigerators provided on floors for fruits, milk & snacks',
+    name: "Refrigerator",
+    desc: "Common refrigerators provided on floors for fruits, milk & snacks",
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
         <path d="M7 2h10c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm0 2v5h10V4H7zm0 7v9h10v-9H7zm2-5h2v2H9V6zm0 7h2v3H9v-3z" />
       </svg>
     ),
-    badge: 'On Floors'
+    badge: "On Floors",
   },
   {
-    name: 'Modern Passenger Lift',
-    desc: 'Smooth elevator servicing all 4 floors with automatic rescue devices',
+    name: "Modern Passenger Lift",
+    desc: "Smooth elevator servicing all 4 floors with automatic rescue devices",
     icon: <Layers className="w-6 h-6" />,
-    badge: 'All Floors'
+    badge: "All Floors",
   },
   {
-    name: 'Attached Bathrooms + Geyser',
-    desc: 'Private attached bath with 24-hour continuous hot water',
+    name: "Attached Bathrooms + Geyser",
+    desc: "Private attached bath with 24-hour continuous hot water",
     icon: <Zap className="w-6 h-6" />,
-    badge: '24/7 Hot Water'
+    badge: "24/7 Hot Water",
   },
   {
-    name: 'Daily Sanitization',
-    desc: 'Professional housekeeping team for daily dusting, mopping & bins',
+    name: "Daily Sanitization",
+    desc: "Professional housekeeping team for daily dusting, mopping & bins",
     icon: <Sparkles className="w-6 h-6" />,
-    badge: 'Hygienic'
+    badge: "Hygienic",
   },
   {
-    name: '24 Hours Water Supply',
-    desc: 'Both municipal and dual borewell lines with uninterrupted backup',
+    name: "24 Hours Water Supply",
+    desc: "Both municipal and dual borewell lines with uninterrupted backup",
     icon: <Droplet className="w-6 h-6" />,
-    badge: 'Always Available'
-  }
+    badge: "Always Available",
+  },
 ];
 
 const FOOD_SPECIALS = [
-  { name: 'Fresh Chapathi & Curry', type: 'Veg', desc: 'Soft wheat rotis prepared fresh twice daily' },
-  { name: 'Homestyle Chicken Curry', type: 'Non-Veg', desc: 'Flavorful spiced gravy served 3 times a week' },
-  { name: 'Mixed Veg Curry & Kurma', type: 'Veg', desc: 'Nutritious seasonal vegetable preparations' },
-  { name: 'Crispy Onion Pakoda', type: 'Veg', desc: 'Hot evening tea-time snack special' },
-  { name: 'Traditional South Sambar', type: 'Veg', desc: 'Slow-cooked lentil stew with fresh drumsticks' },
-  { name: 'Comfort Peppery Rasam', type: 'Veg', desc: 'Aromatic digestive soup with steamed rice' },
-  { name: 'Egg Masala Curry', type: 'Non-Veg', desc: 'Rich protein dish served with hot rotis' },
-  { name: 'Tadka Dal Fry', type: 'Veg', desc: 'North Indian yellow lentils with cumin & ghee' }
+  {
+    name: "Fresh Chapathi & Curry",
+    type: "Veg",
+    desc: "Soft wheat rotis prepared fresh twice daily",
+  },
+  {
+    name: "Homestyle Chicken Curry",
+    type: "Non-Veg",
+    desc: "Flavorful spiced gravy served 3 times a week",
+  },
+  {
+    name: "Mixed Veg Curry & Kurma",
+    type: "Veg",
+    desc: "Nutritious seasonal vegetable preparations",
+  },
+  {
+    name: "Crispy Onion Pakoda",
+    type: "Veg",
+    desc: "Hot evening tea-time snack special",
+  },
+  {
+    name: "Traditional South Sambar",
+    type: "Veg",
+    desc: "Slow-cooked lentil stew with fresh drumsticks",
+  },
+  {
+    name: "Comfort Peppery Rasam",
+    type: "Veg",
+    desc: "Aromatic digestive soup with steamed rice",
+  },
+  {
+    name: "Egg Masala Curry",
+    type: "Non-Veg",
+    desc: "Rich protein dish served with hot rotis",
+  },
+  {
+    name: "Tadka Dal Fry",
+    type: "Veg",
+    desc: "North Indian yellow lentils with cumin & ghee",
+  },
 ];
 
 const FAQS = [
   {
-    q: 'How does the negotiable pricing work?',
-    a: 'Our base monthly tariffs are 2 Sharing starting from ₹14,000, 3 Sharing from ₹13,000, and 4 Sharing from ₹10,000. Rent is openly negotiable depending on your move-in date, payment plan, and stay duration when you visit our premises.'
+    q: "How does the negotiable pricing work?",
+    a: "Our base monthly tariffs are 2 Sharing starting from ₹14,000, 3 Sharing from ₹13,000, and 4 Sharing from ₹10,000. Rent is openly negotiable depending on your move-in date, payment plan, and stay duration when you visit our premises.",
   },
   {
-    q: 'Where is the PG located in Bengaluru?',
-    a: 'We are situated at: 307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. It is just 3 minutes away from Halasuru Metro Station and 4 minutes to 100 Feet Road, Indiranagar.'
+    q: "Where is the PG located in Bengaluru?",
+    a: "We are situated at: 307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. It is just 3 minutes away from Halasuru Metro Station and 4 minutes to 100 Feet Road, Indiranagar.",
   },
   {
-    q: 'Is Non-Veg food served, and is self-cooking allowed?',
-    a: 'Yes! We serve 3 times daily meals (Breakfast, Lunch, and Dinner in South & North styles). Wholesome Non-Veg is served 3 times a week. We also offer a dedicated Self-Cooking Kitchen for late night snacking, tea, or special diet needs.'
+    q: "Is Non-Veg food served, and is self-cooking allowed?",
+    a: "Yes! We serve 3 times daily meals (Breakfast, Lunch, and Dinner in South & North styles). Wholesome Non-Veg is served 3 times a week. We also offer a dedicated Self-Cooking Kitchen for late night snacking, tea, or special diet needs.",
   },
   {
-    q: 'What are the main security precautions for ladies?',
-    a: 'We have round-the-clock physical security guards stationed at the gate, full CCTV coverage on corridors and entrances, and biometric fingerprint access so only verified lady residents can enter.'
+    q: "What are the main security precautions for ladies?",
+    a: "We have round-the-clock physical security guards stationed at the gate, full CCTV coverage on corridors and entrances, and biometric fingerprint access so only verified lady residents can enter.",
   },
   {
-    q: 'Are Wi-Fi, electricity, and hot water charged separately?',
-    a: 'No hidden charges! Wi-Fi, 24/7 hot geyser water, passenger lift, laundry machines, and regular maintenance are all covered under your monthly rent.'
-  }
+    q: "Are Wi-Fi, electricity, and hot water charged separately?",
+    a: "No hidden charges! Wi-Fi, 24/7 hot geyser water, passenger lift, laundry machines, and regular maintenance are all covered under your monthly rent.",
+  },
 ];
 
 function BrandEmblem({ className = "w-12 h-12" }) {
@@ -209,9 +244,9 @@ function BrandEmblem({ className = "w-12 h-12" }) {
 
   if (!hasError) {
     return (
-      <img 
-        src={LOGO_IMAGE} 
-        alt="Sky Living PG for Ladies Logo" 
+      <img
+        src={LOGO_IMAGE}
+        alt="Sky Living PG for Ladies Logo"
         onError={() => setHasError(true)}
         className={`${className} object-contain rounded-full bg-white shadow-xs`}
       />
@@ -219,7 +254,9 @@ function BrandEmblem({ className = "w-12 h-12" }) {
   }
 
   return (
-    <div className={`${className} rounded-full bg-gradient-to-tr from-pink-100 to-purple-100 border border-pink-300 flex items-center justify-center text-[#4A0E4E] font-bold text-xs shadow-xs`}>
+    <div
+      className={`${className} rounded-full bg-gradient-to-tr from-pink-100 to-purple-100 border border-pink-300 flex items-center justify-center text-[#4A0E4E] font-bold text-xs shadow-xs`}
+    >
       <Heart className="w-5 h-5 text-[#E91E63] fill-current" />
     </div>
   );
@@ -229,15 +266,17 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [callModalOpen, setCallModalOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [selectedSharing, setSelectedSharing] = useState('2 Sharing');
+  const [selectedSharing, setSelectedSharing] = useState("2 Sharing");
 
   // Booking Form state
-  const [userName, setUserName] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [sharingType, setSharingType] = useState('2 Sharing (Starts ₹14,000 - Negotiable)');
-  const [moveDate, setMoveDate] = useState('');
-  const [foodType, setFoodType] = useState('Veg & Non-Veg (3x weekly)');
-  const [notes, setNotes] = useState('');
+  const [userName, setUserName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [sharingType, setSharingType] = useState(
+    "2 Sharing (Starts ₹14,000 - Negotiable)",
+  );
+  const [moveDate, setMoveDate] = useState("");
+  const [foodType, setFoodType] = useState("Veg & Non-Veg (3x weekly)");
+  const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleWhatsAppInquiry = (e) => {
@@ -245,25 +284,27 @@ export default function App() {
     if (!userName || !userPhone) return;
 
     setSubmitted(true);
-    const textMessage = `*Sky Living PG for Ladies - Room Inquiry*%0A` +
+    const textMessage =
+      `*Sky Living PG for Ladies - Room Inquiry*%0A` +
       `👤 *Name:* ${encodeURIComponent(userName)}%0A` +
       `📞 *Phone:* ${encodeURIComponent(userPhone)}%0A` +
       `🛏️ *Sharing Choice:* ${encodeURIComponent(sharingType)}%0A` +
-      `📅 *Move-In Date:* ${encodeURIComponent(moveDate || 'Immediate / Flexible')}%0A` +
+      `📅 *Move-In Date:* ${encodeURIComponent(moveDate || "Immediate / Flexible")}%0A` +
       `🍲 *Food:* ${encodeURIComponent(foodType)}%0A` +
-      `💬 *Note:* ${encodeURIComponent(notes || 'Interested in visiting and discussing negotiable pricing.')}`;
+      `💬 *Note:* ${encodeURIComponent(notes || "Interested in visiting and discussing negotiable pricing.")}`;
 
     setTimeout(() => {
-      window.open(`https://wa.me/918073328988?text=${textMessage}`, '_blank');
+      window.open(`https://wa.me/918073328988?text=${textMessage}`, "_blank");
     }, 600);
   };
 
   return (
     <div className="min-h-screen bg-[#FFFDFE] text-slate-800 font-sans selection:bg-[#E91E63] selection:text-white relative pb-20 md:pb-0">
-
       {/* FLOATING ACTION BUTTONS ON THE RIGHT SIDE: WHATSAPP CHAT & CALL BUTTON */}
-      <aside aria-label="Direct Action Buttons" className="fixed right-4 sm:right-6 bottom-24 md:bottom-8 z-50 flex flex-col items-end gap-3.5 pointer-events-auto">
-        
+      <aside
+        aria-label="Direct Action Buttons"
+        className="fixed right-4 sm:right-6 bottom-24 md:bottom-8 z-50 flex flex-col items-end gap-3.5 pointer-events-auto"
+      >
         {/* Floating Call Button with Pulsing Wave */}
         <div className="relative group">
           <button
@@ -294,14 +335,13 @@ export default function App() {
             WhatsApp Direct Chat
           </span>
         </div>
-
       </aside>
 
       {/* QUICK CALL NUMBERS MODAL POPUP */}
       {callModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-pink-200 relative animate-in fade-in zoom-in duration-200">
-            <button 
+            <button
               onClick={() => setCallModalOpen(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1"
             >
@@ -311,12 +351,16 @@ export default function App() {
               <div className="w-12 h-12 rounded-full bg-pink-100 text-[#4A0E4E] flex items-center justify-center mx-auto">
                 <Phone className="w-6 h-6 text-[#E91E63]" />
               </div>
-              <h4 className="text-lg font-serif font-bold text-slate-900">Direct Manager Contacts</h4>
-              <p className="text-xs text-slate-500">Tap below to call directly for instant tour or price negotiation</p>
+              <h4 className="text-lg font-serif font-bold text-slate-900">
+                Direct Manager Contacts
+              </h4>
+              <p className="text-xs text-slate-500">
+                Tap below to call directly for instant tour or price negotiation
+              </p>
             </div>
-            
+
             <div className="space-y-3">
-              <a 
+              <a
                 href="tel:+918073328988"
                 className="flex items-center justify-between p-3.5 rounded-2xl bg-pink-50 hover:bg-pink-100/80 border border-pink-200 transition text-[#4A0E4E] font-bold text-sm"
               >
@@ -325,14 +369,16 @@ export default function App() {
                     1
                   </div>
                   <div>
-                    <div className="text-[10px] text-pink-700 font-semibold uppercase">Manager Hotline 1</div>
+                    <div className="text-[10px] text-pink-700 font-semibold uppercase">
+                      Manager Hotline 1
+                    </div>
                     <div>+91 8073328988</div>
                   </div>
                 </div>
                 <ChevronRight className="w-4 h-4 text-pink-500" />
               </a>
 
-              <a 
+              <a
                 href="tel:+917780423848"
                 className="flex items-center justify-between p-3.5 rounded-2xl bg-purple-50 hover:bg-purple-100/80 border border-purple-200 transition text-[#4A0E4E] font-bold text-sm"
               >
@@ -341,7 +387,9 @@ export default function App() {
                     2
                   </div>
                   <div>
-                    <div className="text-[10px] text-purple-700 font-semibold uppercase">Manager Hotline 2</div>
+                    <div className="text-[10px] text-purple-700 font-semibold uppercase">
+                      Manager Hotline 2
+                    </div>
                     <div>+91 7780423848</div>
                   </div>
                 </div>
@@ -369,12 +417,18 @@ export default function App() {
           </div>
 
           <div className="flex items-center space-x-4 font-semibold text-pink-100">
-            <a href="tel:+918073328988" className="flex items-center gap-1 hover:text-white transition">
+            <a
+              href="tel:+918073328988"
+              className="flex items-center gap-1 hover:text-white transition"
+            >
               <Phone className="w-3.5 h-3.5 text-pink-300" />
               <span>8073328988</span>
             </a>
             <span className="text-pink-300/40 hidden sm:inline">|</span>
-            <a href="tel:+917780423848" className="flex items-center gap-1 hover:text-white transition">
+            <a
+              href="tel:+917780423848"
+              className="flex items-center gap-1 hover:text-white transition"
+            >
               <Phone className="w-3.5 h-3.5 text-pink-300" />
               <span>7780423848</span>
             </a>
@@ -386,48 +440,67 @@ export default function App() {
       <nav className="bg-white/95 backdrop-blur-md sticky top-[33px] z-30 border-b border-pink-100 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
             {/* Logo from Flyer */}
             <a href="#hero" className="flex items-center gap-3">
               <BrandEmblem className="w-12 h-12" />
               <div className="flex flex-col">
                 <div className="font-serif text-2xl font-bold tracking-tight text-[#4A0E4E] leading-none flex items-center gap-1">
-                  SKY <span className="text-[#C2185B] italic font-normal">Living</span>
+                  SKY{" "}
+                  <span className="text-[#C2185B] italic font-normal">
+                    Living
+                  </span>
                 </div>
                 <div className="text-[10px] tracking-widest uppercase font-bold text-[#880E4F] mt-0.5 flex items-center gap-1">
                   <span>PG FOR LADIES</span>
                   <span className="text-[#D4AF37]">♥</span>
                 </div>
-                <div className="text-[9px] text-pink-600 font-medium">Comfort • Safety • Care</div>
+                <div className="text-[9px] text-pink-600 font-medium">
+                  Comfort • Safety • Care
+                </div>
               </div>
             </a>
 
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
-              <a href="#building" className="hover:text-[#C2185B] transition">Building Photo</a>
-              <a href="#pricing" className="hover:text-[#C2185B] transition flex items-center gap-1">
-                <span>Room Rates</span>
-                <span className="text-[10px] bg-pink-100 text-[#C2185B] font-bold px-1.5 py-0.5 rounded">Negotiable</span>
+              <a href="#building" className="hover:text-[#C2185B] transition">
+                Building Photo
               </a>
-              <a href="#amenities" className="hover:text-[#C2185B] transition">Amenities</a>
-              <a href="#food" className="hover:text-[#C2185B] transition">Food Menu</a>
-              <a href="#location" className="hover:text-[#C2185B] transition">Location</a>
-              <a href="#faq" className="hover:text-[#C2185B] transition">FAQ</a>
+              <a
+                href="#pricing"
+                className="hover:text-[#C2185B] transition flex items-center gap-1"
+              >
+                <span>Room Rates</span>
+                <span className="text-[10px] bg-pink-100 text-[#C2185B] font-bold px-1.5 py-0.5 rounded">
+                  Negotiable
+                </span>
+              </a>
+              <a href="#amenities" className="hover:text-[#C2185B] transition">
+                Amenities
+              </a>
+              <a href="#food" className="hover:text-[#C2185B] transition">
+                Food Menu
+              </a>
+              <a href="#location" className="hover:text-[#C2185B] transition">
+                Location
+              </a>
+              <a href="#faq" className="hover:text-[#C2185B] transition">
+                FAQ
+              </a>
             </div>
 
             {/* Top Action CTAs */}
             <div className="hidden sm:flex items-center space-x-3">
-              <a 
-                href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20am%20interested%20in%20room%20availability%20in%20Cambridge%20Layout." 
-                target="_blank" 
+              <a
+                href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20am%20interested%20in%20room%20availability%20in%20Cambridge%20Layout."
+                target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] hover:bg-emerald-600 text-white shadow-sm transition"
               >
                 <MessageCircle className="w-3.5 h-3.5 fill-current" />
                 WhatsApp
               </a>
-              <a 
-                href="#book" 
+              <a
+                href="#book"
                 className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#4A0E4E] hover:bg-[#2E0632] text-white shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5"
               >
                 Book Visit
@@ -435,12 +508,16 @@ export default function App() {
             </div>
 
             {/* Mobile Nav Toggle */}
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation"
               className="lg:hidden p-2 rounded-lg text-[#4A0E4E] hover:bg-pink-50"
             >
-              {mobileMenuOpen ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <ChevronUp className="w-6 h-6" />
+              ) : (
+                <ChevronDown className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -448,30 +525,74 @@ export default function App() {
         {/* Mobile menu drop */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-b border-pink-100 px-4 pt-2 pb-5 space-y-2 shadow-xl">
-            <a onClick={() => setMobileMenuOpen(false)} href="#building" className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50">The Building</a>
-            <a onClick={() => setMobileMenuOpen(false)} href="#pricing" className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50">Room Rates (Negotiable)</a>
-            <a onClick={() => setMobileMenuOpen(false)} href="#amenities" className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50">Amenities</a>
-            <a onClick={() => setMobileMenuOpen(false)} href="#food" className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50">Daily Food & Non-Veg</a>
-            <a onClick={() => setMobileMenuOpen(false)} href="#location" className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50">Location Map</a>
+            <a
+              onClick={() => setMobileMenuOpen(false)}
+              href="#building"
+              className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50"
+            >
+              The Building
+            </a>
+            <a
+              onClick={() => setMobileMenuOpen(false)}
+              href="#pricing"
+              className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50"
+            >
+              Room Rates (Negotiable)
+            </a>
+            <a
+              onClick={() => setMobileMenuOpen(false)}
+              href="#amenities"
+              className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50"
+            >
+              Amenities
+            </a>
+            <a
+              onClick={() => setMobileMenuOpen(false)}
+              href="#food"
+              className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50"
+            >
+              Daily Food & Non-Veg
+            </a>
+            <a
+              onClick={() => setMobileMenuOpen(false)}
+              href="#location"
+              className="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-pink-50"
+            >
+              Location Map
+            </a>
             <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
-              <a onClick={() => setMobileMenuOpen(false)} href="#book" className="text-center py-2.5 rounded-xl bg-[#4A0E4E] text-white font-bold text-xs uppercase">Schedule a Free Visit</a>
-              <a href="tel:+918073328988" className="text-center py-2.5 rounded-xl border border-[#4A0E4E] text-[#4A0E4E] font-bold text-xs uppercase">Call: 8073328988</a>
+              <a
+                onClick={() => setMobileMenuOpen(false)}
+                href="#book"
+                className="text-center py-2.5 rounded-xl bg-[#4A0E4E] text-white font-bold text-xs uppercase"
+              >
+                Schedule a Free Visit
+              </a>
+              <a
+                href="tel:+918073328988"
+                className="text-center py-2.5 rounded-xl border border-[#4A0E4E] text-[#4A0E4E] font-bold text-xs uppercase"
+              >
+                Call: 8073328988
+              </a>
             </div>
           </div>
         )}
       </nav>
 
       {/* HERO SECTION WITH USER'S 4TH IMAGE PROMINENTLY SHOWCASED */}
-      <section id="hero" className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 bg-gradient-to-b from-[#FFF0F5] via-white to-pink-50/40">
+      <section
+        id="hero"
+        className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 bg-gradient-to-b from-[#FFF0F5] via-white to-pink-50/40"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
-            
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 border border-pink-200 text-[#880E4F] text-xs font-bold">
                 <Sparkles className="w-4 h-4 text-[#E91E63]" />
-                <span>Newly Opened Luxury Building in Cambridge Layout, Indiranagar</span>
+                <span>
+                  Newly Opened Luxury Building in Cambridge Layout, Indiranagar
+                </span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-[#2E0632] tracking-tight leading-[1.12]">
@@ -482,7 +603,10 @@ export default function App() {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Experience supreme security, cleanliness, and comfort in our brand-new glass facade building. Featuring fully furnished <strong>2, 3 & 4 Sharing Rooms</strong>, 3 times daily meals, elevator, and biometric safety.
+                Experience supreme security, cleanliness, and comfort in our
+                brand-new glass facade building. Featuring fully furnished{" "}
+                <strong>2, 3 & 4 Sharing Rooms</strong>, 3 times daily meals,
+                elevator, and biometric safety.
               </p>
 
               {/* Highlighting Negotiable Pricing in Hero */}
@@ -498,34 +622,52 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="p-2 rounded-xl bg-pink-50 border border-pink-100">
-                    <div className="text-[11px] font-semibold text-slate-500">2 Sharing</div>
-                    <div className="font-serif font-bold text-base text-[#4A0E4E]">Starts ₹14,000</div>
-                    <div className="text-[10px] text-emerald-600 font-bold">Negotiable</div>
+                    <div className="text-[11px] font-semibold text-slate-500">
+                      2 Sharing
+                    </div>
+                    <div className="font-serif font-bold text-base text-[#4A0E4E]">
+                      Starts ₹14,000
+                    </div>
+                    <div className="text-[10px] text-emerald-600 font-bold">
+                      Negotiable
+                    </div>
                   </div>
                   <div className="p-2 rounded-xl bg-pink-50 border border-pink-100">
-                    <div className="text-[11px] font-semibold text-slate-500">3 Sharing</div>
-                    <div className="font-serif font-bold text-base text-[#4A0E4E]">Starts ₹13,000</div>
-                    <div className="text-[10px] text-emerald-600 font-bold">Negotiable</div>
+                    <div className="text-[11px] font-semibold text-slate-500">
+                      3 Sharing
+                    </div>
+                    <div className="font-serif font-bold text-base text-[#4A0E4E]">
+                      Starts ₹13,000
+                    </div>
+                    <div className="text-[10px] text-emerald-600 font-bold">
+                      Negotiable
+                    </div>
                   </div>
                   <div className="p-2 rounded-xl bg-pink-50 border border-pink-100">
-                    <div className="text-[11px] font-semibold text-slate-500">4 Sharing</div>
-                    <div className="font-serif font-bold text-base text-[#4A0E4E]">Starts ₹10,000</div>
-                    <div className="text-[10px] text-emerald-600 font-bold">Negotiable</div>
+                    <div className="text-[11px] font-semibold text-slate-500">
+                      4 Sharing
+                    </div>
+                    <div className="font-serif font-bold text-base text-[#4A0E4E]">
+                      Starts ₹10,000
+                    </div>
+                    <div className="text-[10px] text-emerald-600 font-bold">
+                      Negotiable
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start pt-2">
-                <a 
-                  href="#pricing" 
+                <a
+                  href="#pricing"
                   className="px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider bg-[#4A0E4E] hover:bg-[#2E0632] text-white shadow-lg hover:shadow-pink-900/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
                 >
                   <Calendar className="w-4 h-4 text-pink-300" />
                   <span>View Sharing Details</span>
                 </a>
-                <a 
-                  href="tel:+918073328988" 
+                <a
+                  href="tel:+918073328988"
                   className="px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider border-2 border-[#4A0E4E] text-[#4A0E4E] hover:bg-pink-50 transition flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4 text-[#E91E63]" />
@@ -535,25 +677,32 @@ export default function App() {
 
               {/* Flyer Motto Bar */}
               <div className="flex items-center justify-center lg:justify-start gap-4 text-xs font-bold text-[#4A0E4E] uppercase tracking-wider pt-2">
-                <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" /> LIVE</span>
+                <span className="flex items-center gap-1">
+                  <Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" />{" "}
+                  LIVE
+                </span>
                 <span>•</span>
-                <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" /> LEARN</span>
+                <span className="flex items-center gap-1">
+                  <Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" />{" "}
+                  LEARN
+                </span>
                 <span>•</span>
-                <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" /> GROW</span>
+                <span className="flex items-center gap-1">
+                  <Heart className="w-3.5 h-3.5 text-[#E91E63] fill-current" />{" "}
+                  GROW
+                </span>
               </div>
-
             </div>
 
             {/* Right Column: User's 4th Image of the Actual Building */}
             <div className="lg:col-span-5 relative" id="building">
               <div className="relative rounded-3xl p-3 bg-gradient-to-tr from-pink-300 via-purple-300 to-amber-200 shadow-2xl">
                 <div className="bg-white rounded-2xl overflow-hidden relative group">
-                  
                   {/* Real building photograph from user */}
                   <div className="relative h-[460px] sm:h-[500px] w-full bg-slate-900 overflow-hidden">
-                    <img 
-                      src={BUILDING_IMAGE} 
-                      alt="Sky Living PG for Ladies Building Exterior" 
+                    <img
+                      src={BUILDING_IMAGE}
+                      alt="Sky Living PG for Ladies Building Exterior"
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = FALLBACK_BUILDING;
@@ -590,19 +739,20 @@ export default function App() {
                         </div>
                       </div>
                     </div>
-
                   </div>
 
                   {/* Feature strip below building image */}
                   <div className="p-3 bg-pink-50 border-t border-pink-100 flex items-center justify-between text-xs text-slate-700">
-                    <span className="font-semibold text-[#4A0E4E]">✓ 4 Storeys with Elevator</span>
-                    <span className="font-semibold text-[#E91E63]">✓ Biometric Main Gate</span>
+                    <span className="font-semibold text-[#4A0E4E]">
+                      ✓ 4 Storeys with Elevator
+                    </span>
+                    <span className="font-semibold text-[#E91E63]">
+                      ✓ Biometric Main Gate
+                    </span>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -612,29 +762,47 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="p-2 border-r border-pink-800/50">
-              <div className="text-xl sm:text-2xl font-serif font-bold text-amber-300">₹10,000*</div>
-              <div className="text-[11px] uppercase tracking-wider text-pink-100">Starts From (Negotiable)</div>
+              <div className="text-xl sm:text-2xl font-serif font-bold text-amber-300">
+                ₹10,000*
+              </div>
+              <div className="text-[11px] uppercase tracking-wider text-pink-100">
+                Starts From (Negotiable)
+              </div>
             </div>
             <div className="p-2 border-r border-pink-800/50">
-              <div className="text-xl sm:text-2xl font-serif font-bold text-pink-200">3x Daily Meals</div>
-              <div className="text-[11px] uppercase tracking-wider text-pink-100">South & North Homestyle</div>
+              <div className="text-xl sm:text-2xl font-serif font-bold text-pink-200">
+                3x Daily Meals
+              </div>
+              <div className="text-[11px] uppercase tracking-wider text-pink-100">
+                South & North Homestyle
+              </div>
             </div>
             <div className="p-2 border-r border-pink-800/50">
-              <div className="text-xl sm:text-2xl font-serif font-bold text-amber-300">3x Non-Veg</div>
-              <div className="text-[11px] uppercase tracking-wider text-pink-100">Chicken / Egg Curries</div>
+              <div className="text-xl sm:text-2xl font-serif font-bold text-amber-300">
+                3x Non-Veg
+              </div>
+              <div className="text-[11px] uppercase tracking-wider text-pink-100">
+                Chicken / Egg Curries
+              </div>
             </div>
             <div className="p-2">
-              <div className="text-xl sm:text-2xl font-serif font-bold text-emerald-300">100% Safe</div>
-              <div className="text-[11px] uppercase tracking-wider text-pink-100">Biometric + 24/7 CCTV</div>
+              <div className="text-xl sm:text-2xl font-serif font-bold text-emerald-300">
+                100% Safe
+              </div>
+              <div className="text-[11px] uppercase tracking-wider text-pink-100">
+                Biometric + 24/7 CCTV
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* PRICING & ROOM SHARING SECTION (2, 3 & 4 SHARING WITH NEGOTIABLE LABELS) */}
-      <section id="pricing" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 via-pink-50/30 to-white">
+      <section
+        id="pricing"
+        className="py-16 md:py-24 bg-gradient-to-b from-slate-50 via-pink-50/30 to-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 text-[#C2185B] text-xs font-bold uppercase tracking-wider">
               <span>Room Options & Transparent Pricing</span>
@@ -643,45 +811,60 @@ export default function App() {
               Choose Your Sharing Preference
             </h2>
             <p className="text-slate-600 text-sm sm:text-base">
-              All rooms come fully furnished with wooden cots, orthopaedic mattresses, individual lockable wardrobes, and attached hygienic bathrooms.
+              All rooms come fully furnished with wooden cots, orthopaedic
+              mattresses, individual lockable wardrobes, and attached hygienic
+              bathrooms.
             </p>
             <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-              <span>✨ Special Benefit: All prices are <strong>Negotiable</strong> during your PG visit!</span>
+              <span>
+                ✨ Special Benefit: All prices are <strong>Negotiable</strong>{" "}
+                during your PG visit!
+              </span>
             </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {ROOM_PLANS.map((room) => (
-              <div 
-                key={room.type} 
+              <div
+                key={room.type}
                 className="bg-white rounded-3xl overflow-hidden border-2 border-pink-100 hover:border-pink-300 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col group relative"
               >
                 {/* Header Price Banner */}
                 <div className="bg-gradient-to-r from-[#2E0632] via-[#4A0E4E] to-[#880E4F] text-white p-5 flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] text-pink-200 font-medium block uppercase tracking-wider">Starts From</span>
+                    <span className="text-[11px] text-pink-200 font-medium block uppercase tracking-wider">
+                      Starts From
+                    </span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-serif font-extrabold text-white">₹{room.price}</span>
-                      <span className="text-xs text-pink-200 font-normal">/month</span>
+                      <span className="text-3xl font-serif font-extrabold text-white">
+                        ₹{room.price}
+                      </span>
+                      <span className="text-xs text-pink-200 font-normal">
+                        /month
+                      </span>
                     </div>
                   </div>
                   <div className="text-right">
                     <span className="inline-block bg-emerald-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-xs animate-pulse">
                       Negotiable
                     </span>
-                    <div className="text-[10px] text-pink-200 mt-0.5">On Visit / Booking</div>
+                    <div className="text-[10px] text-pink-200 mt-0.5">
+                      On Visit / Booking
+                    </div>
                   </div>
                 </div>
 
                 {/* Card Image */}
                 <div className="relative h-48 bg-slate-200 overflow-hidden">
-                  <img 
-                    src={room.image} 
-                    alt={room.title} 
+                  <img
+                    src={room.image}
+                    alt={room.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
-                  <div className={`absolute top-3 right-3 ${room.badgeColor} text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow`}>
+                  <div
+                    className={`absolute top-3 right-3 ${room.badgeColor} text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow`}
+                  >
                     {room.badge}
                   </div>
                   <div className="absolute bottom-2 left-3 bg-white/95 backdrop-blur px-2.5 py-0.5 rounded-lg text-xs font-bold text-[#4A0E4E]">
@@ -693,9 +876,13 @@ export default function App() {
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="text-xl font-serif font-bold text-slate-900">{room.title}</h3>
+                      <h3 className="text-xl font-serif font-bold text-slate-900">
+                        {room.title}
+                      </h3>
                     </div>
-                    <p className="text-xs text-slate-500 mb-4">{room.description}</p>
+                    <p className="text-xs text-slate-500 mb-4">
+                      {room.description}
+                    </p>
 
                     <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-2.5 mb-4 text-center">
                       <span className="text-xs font-bold text-emerald-800">
@@ -715,14 +902,25 @@ export default function App() {
 
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] uppercase font-semibold text-slate-400 block">Tariff</span>
-                      <span className="text-sm font-bold text-[#4A0E4E]">₹{room.price} <span className="text-xs text-emerald-600 font-semibold">(Negotiable)</span></span>
+                      <span className="text-[10px] uppercase font-semibold text-slate-400 block">
+                        Tariff
+                      </span>
+                      <span className="text-sm font-bold text-[#4A0E4E]">
+                        ₹{room.price}{" "}
+                        <span className="text-xs text-emerald-600 font-semibold">
+                          (Negotiable)
+                        </span>
+                      </span>
                     </div>
-                    <button 
+                    <button
                       onClick={() => {
                         setSelectedSharing(room.type);
-                        setSharingType(`${room.type} (Starts ₹${room.price} - Negotiable)`);
-                        document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' });
+                        setSharingType(
+                          `${room.type} (Starts ₹${room.price} - Negotiable)`,
+                        );
+                        document
+                          .getElementById("book")
+                          ?.scrollIntoView({ behavior: "smooth" });
                       }}
                       className="px-4 py-2 rounded-xl text-xs font-bold bg-[#4A0E4E] hover:bg-[#2E0632] text-white transition shadow-sm hover:shadow"
                     >
@@ -736,20 +934,27 @@ export default function App() {
 
           {/* Negotiable Price Notice Banner */}
           <div className="mt-10 bg-white border border-pink-200 rounded-2xl p-4 shadow-xs text-center text-xs text-[#4A0E4E] font-semibold flex flex-wrap items-center justify-center gap-6">
-            <span>✨ <strong>2 Sharing:</strong> Starts ₹14,000 (Negotiable)</span>
-            <span>✨ <strong>3 Sharing:</strong> Starts ₹13,000 (Negotiable)</span>
-            <span>✨ <strong>4 Sharing:</strong> Starts ₹10,000 (Negotiable)</span>
+            <span>
+              ✨ <strong>2 Sharing:</strong> Starts ₹14,000 (Negotiable)
+            </span>
+            <span>
+              ✨ <strong>3 Sharing:</strong> Starts ₹13,000 (Negotiable)
+            </span>
+            <span>
+              ✨ <strong>4 Sharing:</strong> Starts ₹10,000 (Negotiable)
+            </span>
             <span>✨ Zero Brokerage (Direct Owner PG)</span>
             <span>✨ 3x Daily Food + Wi-Fi Included</span>
           </div>
-
         </div>
       </section>
 
       {/* AMENITIES SECTION */}
-      <section id="amenities" className="py-16 md:py-24 bg-white border-t border-pink-100">
+      <section
+        id="amenities"
+        className="py-16 md:py-24 bg-white border-t border-pink-100"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#C2185B] bg-pink-50 px-3 py-1 rounded-full border border-pink-100">
               All Modern Amenities Included
@@ -758,22 +963,27 @@ export default function App() {
               Designed for Convenience & Freedom
             </h2>
             <p className="text-slate-600 text-sm sm:text-base">
-              Everything you need for peaceful, comfortable living without any hidden utility charges.
+              Everything you need for peaceful, comfortable living without any
+              hidden utility charges.
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {AMENITIES.map((item, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="bg-slate-50 hover:bg-pink-50/60 p-5 rounded-2xl border border-slate-100 hover:border-pink-200 transition text-center group flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 mx-auto rounded-2xl bg-white shadow-sm text-[#C2185B] flex items-center justify-center mb-3 group-hover:scale-110 transition">
                     {item.icon}
                   </div>
-                  <h4 className="font-bold text-sm text-slate-800 mb-1">{item.name}</h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed">{item.desc}</p>
+                  <h4 className="font-bold text-sm text-slate-800 mb-1">
+                    {item.name}
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
                 <div className="mt-3 pt-2">
                   <span className="inline-block text-[10px] font-bold text-[#880E4F] bg-white border border-pink-200 px-2 py-0.5 rounded-md">
@@ -790,26 +1000,32 @@ export default function App() {
               <span className="bg-pink-500/40 text-pink-200 text-[11px] uppercase font-bold px-3 py-1 rounded-full border border-pink-400/30">
                 Self-Cooking Facility
               </span>
-              <h3 className="text-2xl font-serif font-bold">Kitchen Access Whenever You Need</h3>
+              <h3 className="text-2xl font-serif font-bold">
+                Kitchen Access Whenever You Need
+              </h3>
               <p className="text-pink-100 text-xs sm:text-sm max-w-xl leading-relaxed">
-                In addition to 3 times prepared meals, all residents enjoy access to a clean <strong>Self-Cooking Space</strong> equipped with induction stoves and sink for making midnight coffee, teas, or health recipes!
+                In addition to 3 times prepared meals, all residents enjoy
+                access to a clean <strong>Self-Cooking Space</strong> equipped
+                with induction stoves and sink for making midnight coffee, teas,
+                or health recipes!
               </p>
             </div>
-            <a 
-              href="#book" 
+            <a
+              href="#book"
               className="px-6 py-3 rounded-full bg-white text-[#4A0E4E] font-bold text-xs uppercase tracking-wider hover:bg-pink-50 transition shadow-md flex-shrink-0"
             >
               Book Room Tour
             </a>
           </div>
-
         </div>
       </section>
 
       {/* FOOD SECTION (3 TIMES DAILY + NON-VEG 3X WEEKLY) */}
-      <section id="food" className="py-16 md:py-24 bg-[#FFF9FB] border-t border-pink-100">
+      <section
+        id="food"
+        className="py-16 md:py-24 bg-[#FFF9FB] border-t border-pink-100"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[#E91E63] bg-pink-100 px-3 py-1 rounded-full">
               Nutritious • Homemade • Hygienic • Delicious
@@ -818,26 +1034,36 @@ export default function App() {
               3 Times Homely Food Daily
             </h2>
             <p className="text-slate-600 text-sm sm:text-base">
-              Freshly prepared with pure ingredients. We serve both <strong>South & North Indian meals</strong> with Non-Veg preparations <strong>3 times every week</strong>.
+              Freshly prepared with pure ingredients. We serve both{" "}
+              <strong>South & North Indian meals</strong> with Non-Veg
+              preparations <strong>3 times every week</strong>.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {FOOD_SPECIALS.map((dish, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="bg-white rounded-2xl p-4 border border-pink-100 shadow-xs hover:shadow-md transition flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md uppercase text-white ${
-                      dish.type === 'Non-Veg' ? 'bg-[#E91E63]' : 'bg-emerald-600'
-                    }`}>
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md uppercase text-white ${
+                        dish.type === "Non-Veg"
+                          ? "bg-[#E91E63]"
+                          : "bg-emerald-600"
+                      }`}
+                    >
                       {dish.type}
                     </span>
-                    <span className="text-[10px] text-pink-600 font-semibold">Homestyle</span>
+                    <span className="text-[10px] text-pink-600 font-semibold">
+                      Homestyle
+                    </span>
                   </div>
-                  <h4 className="font-serif font-bold text-slate-800 text-base">{dish.name}</h4>
+                  <h4 className="font-serif font-bold text-slate-800 text-base">
+                    {dish.name}
+                  </h4>
                   <p className="text-xs text-slate-500 mt-1">{dish.desc}</p>
                 </div>
               </div>
@@ -849,44 +1075,53 @@ export default function App() {
             <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-[#4A0E4E]">Breakfast</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">7:30 AM - 10:00 AM</span>
+                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+                  7:30 AM - 10:00 AM
+                </span>
               </div>
               <p className="text-xs text-slate-600">
-                Hot Chapathis, Idli, Dosa, Poha, Upma, Poori, with filter coffee & tea.
+                Hot Chapathis, Idli, Dosa, Poha, Upma, Poori, with filter coffee
+                & tea.
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-[#4A0E4E]">Lunch</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">12:30 PM - 3:00 PM</span>
+                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+                  12:30 PM - 3:00 PM
+                </span>
               </div>
               <p className="text-xs text-slate-600">
-                Fresh Rotis, Rice, Dal Tadka, Drumstick Sambar, Vegetable Poriyal & Curd. (Lunch packing allowed).
+                Fresh Rotis, Rice, Dal Tadka, Drumstick Sambar, Vegetable
+                Poriyal & Curd. (Lunch packing allowed).
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-[#4A0E4E]">Dinner</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">7:30 PM - 10:00 PM</span>
+                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+                  7:30 PM - 10:00 PM
+                </span>
               </div>
               <p className="text-xs text-slate-600">
-                Warm Rotis, Chicken Curry (3x/wk), Spicy Egg Curry, Veg Kurma, Rasam & buttermilk.
+                Warm Rotis, Chicken Curry (3x/wk), Spicy Egg Curry, Veg Kurma,
+                Rasam & buttermilk.
               </p>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* BOOKING / INQUIRY FORM */}
-      <section id="book" className="py-16 md:py-24 bg-gradient-to-b from-white to-pink-50/50">
+      <section
+        id="book"
+        className="py-16 md:py-24 bg-gradient-to-b from-white to-pink-50/50"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="bg-white rounded-3xl shadow-xl border border-pink-200 overflow-hidden">
             <div className="grid md:grid-cols-12">
-              
               {/* Left Column */}
               <div className="md:col-span-5 bg-gradient-to-br from-[#2E0632] via-[#4A0E4E] to-[#880E4F] p-8 text-white flex flex-col justify-between">
                 <div className="space-y-6">
@@ -897,19 +1132,31 @@ export default function App() {
                     Schedule Your Free Visit
                   </h3>
                   <p className="text-pink-100/80 text-xs leading-relaxed">
-                    Come inspect our rooms, test the Wi-Fi, taste the food, and finalize your negotiable rent rate directly with the management.
+                    Come inspect our rooms, test the Wi-Fi, taste the food, and
+                    finalize your negotiable rent rate directly with the
+                    management.
                   </p>
 
                   <div className="space-y-3 pt-2 text-xs">
                     <div>
-                      <div className="text-pink-300 text-[10px] uppercase font-bold">Call Manager 1</div>
-                      <a href="tel:+918073328988" className="font-bold text-base text-white hover:underline">
+                      <div className="text-pink-300 text-[10px] uppercase font-bold">
+                        Call Manager 1
+                      </div>
+                      <a
+                        href="tel:+918073328988"
+                        className="font-bold text-base text-white hover:underline"
+                      >
                         +91 8073328988
                       </a>
                     </div>
                     <div>
-                      <div className="text-pink-300 text-[10px] uppercase font-bold">Call Manager 2</div>
-                      <a href="tel:+917780423848" className="font-bold text-base text-white hover:underline">
+                      <div className="text-pink-300 text-[10px] uppercase font-bold">
+                        Call Manager 2
+                      </div>
+                      <a
+                        href="tel:+917780423848"
+                        className="font-bold text-base text-white hover:underline"
+                      >
                         +91 7780423848
                       </a>
                     </div>
@@ -917,7 +1164,8 @@ export default function App() {
                 </div>
 
                 <div className="pt-6 border-t border-pink-800/50 text-[11px] text-pink-200 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span> Instant WhatsApp Confirmation
+                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span>{" "}
+                  Instant WhatsApp Confirmation
                 </div>
               </div>
 
@@ -927,7 +1175,8 @@ export default function App() {
                   Inquire for Bed Availability
                 </h4>
                 <p className="text-xs text-slate-500 mb-6">
-                  Submit below to open a pre-filled WhatsApp message with our manager.
+                  Submit below to open a pre-filled WhatsApp message with our
+                  manager.
                 </p>
 
                 <form onSubmit={handleWhatsAppInquiry} className="space-y-4">
@@ -935,12 +1184,12 @@ export default function App() {
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Your Full Name *
                     </label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      placeholder="e.g. Priya Sharma" 
+                      placeholder="e.g. Priya Sharma"
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E]"
                     />
                   </div>
@@ -950,12 +1199,12 @@ export default function App() {
                       <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Phone / WhatsApp *
                       </label>
-                      <input 
-                        type="tel" 
-                        required 
+                      <input
+                        type="tel"
+                        required
                         value={userPhone}
                         onChange={(e) => setUserPhone(e.target.value)}
-                        placeholder="10-digit mobile number" 
+                        placeholder="10-digit mobile number"
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E]"
                       />
                     </div>
@@ -964,15 +1213,23 @@ export default function App() {
                       <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Sharing Choice
                       </label>
-                      <select 
+                      <select
                         value={sharingType}
                         onChange={(e) => setSharingType(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E] bg-white"
                       >
-                        <option value="2 Sharing (Starts ₹14,000 - Negotiable)">2 Sharing (Starts ₹14,000)</option>
-                        <option value="3 Sharing (Starts ₹13,000 - Negotiable)">3 Sharing (Starts ₹13,000)</option>
-                        <option value="4 Sharing (Starts ₹10,000 - Negotiable)">4 Sharing (Starts ₹10,000)</option>
-                        <option value="Any Available Bed">Any Available Bed</option>
+                        <option value="2 Sharing (Starts ₹14,000 - Negotiable)">
+                          2 Sharing (Starts ₹14,000)
+                        </option>
+                        <option value="3 Sharing (Starts ₹13,000 - Negotiable)">
+                          3 Sharing (Starts ₹13,000)
+                        </option>
+                        <option value="4 Sharing (Starts ₹10,000 - Negotiable)">
+                          4 Sharing (Starts ₹10,000)
+                        </option>
+                        <option value="Any Available Bed">
+                          Any Available Bed
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -982,8 +1239,8 @@ export default function App() {
                       <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Expected Move-In Date
                       </label>
-                      <input 
-                        type="date" 
+                      <input
+                        type="date"
                         value={moveDate}
                         onChange={(e) => setMoveDate(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E]"
@@ -994,14 +1251,20 @@ export default function App() {
                       <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Diet Preference
                       </label>
-                      <select 
+                      <select
                         value={foodType}
                         onChange={(e) => setFoodType(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E] bg-white"
                       >
-                        <option value="Veg & Non-Veg (3x weekly)">South & North Veg + Non-Veg</option>
-                        <option value="Pure Vegetarian">Pure Vegetarian Only</option>
-                        <option value="Self Cooking / Custom">Self Cooking Preferred</option>
+                        <option value="Veg & Non-Veg (3x weekly)">
+                          South & North Veg + Non-Veg
+                        </option>
+                        <option value="Pure Vegetarian">
+                          Pure Vegetarian Only
+                        </option>
+                        <option value="Self Cooking / Custom">
+                          Self Cooking Preferred
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -1010,17 +1273,17 @@ export default function App() {
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Notes / Visiting Time (Optional)
                     </label>
-                    <textarea 
-                      rows={2} 
+                    <textarea
+                      rows={2}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      placeholder="e.g. Visiting this Saturday at 4 PM to discuss pricing" 
+                      placeholder="e.g. Visiting this Saturday at 4 PM to discuss pricing"
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E]"
                     ></textarea>
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="w-full py-3 rounded-xl bg-[#4A0E4E] hover:bg-[#2E0632] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
                   >
                     <span>Send Inquiry on WhatsApp</span>
@@ -1034,18 +1297,18 @@ export default function App() {
                   </div>
                 )}
               </div>
-
             </div>
           </div>
-
         </div>
       </section>
 
       {/* LOCATION & GOOGLE MAP */}
-      <section id="location" className="py-16 md:py-20 bg-white border-t border-pink-100">
+      <section
+        id="location"
+        className="py-16 md:py-20 bg-white border-t border-pink-100"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
-            
             <div className="lg:col-span-5 space-y-6">
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C2185B]">
                 <MapPin className="w-4 h-4" />
@@ -1061,13 +1324,19 @@ export default function App() {
                   Official PG Address
                 </div>
                 <p className="text-slate-800 text-sm font-medium leading-relaxed">
-                  <strong>Sky Living PG for Ladies</strong><br />
-                  307, 1st Cross Rd, Halasuru, Cambridge Layout,<br />
+                  <strong>Sky Living PG for Ladies</strong>
+                  <br />
+                  307, 1st Cross Rd, Halasuru, Cambridge Layout,
+                  <br />
                   Indiranagar, Bengaluru, Karnataka 560008
                 </p>
                 <div className="pt-2 text-xs text-slate-600 flex items-center gap-4">
-                  <a href="tel:+918073328988" className="hover:underline">📞 <strong>8073328988</strong></a>
-                  <a href="tel:+917780423848" className="hover:underline">📱 <strong>7780423848</strong></a>
+                  <a href="tel:+918073328988" className="hover:underline">
+                    📞 <strong>8073328988</strong>
+                  </a>
+                  <a href="tel:+917780423848" className="hover:underline">
+                    📱 <strong>7780423848</strong>
+                  </a>
                 </div>
               </div>
 
@@ -1075,25 +1344,39 @@ export default function App() {
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                   <div className="font-bold text-slate-800">Halasuru Metro</div>
-                  <div className="text-[#C2185B] font-semibold text-[11px]">~ 3 mins walk</div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    ~ 3 mins walk
+                  </div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">100 Feet Rd Indiranagar</div>
-                  <div className="text-[#C2185B] font-semibold text-[11px]">~ 4 mins away</div>
+                  <div className="font-bold text-slate-800">
+                    100 Feet Rd Indiranagar
+                  </div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    ~ 4 mins away
+                  </div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">MG Road / Trinity</div>
-                  <div className="text-[#C2185B] font-semibold text-[11px]">~ 8 mins away</div>
+                  <div className="font-bold text-slate-800">
+                    MG Road / Trinity
+                  </div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    ~ 8 mins away
+                  </div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">Bagmane Tech Park</div>
-                  <div className="text-[#C2185B] font-semibold text-[11px]">Quick Commute</div>
+                  <div className="font-bold text-slate-800">
+                    Bagmane Tech Park
+                  </div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    Quick Commute
+                  </div>
                 </div>
               </div>
 
-              <a 
-                href="https://maps.google.com/?q=307+1st+Cross+Rd+Halasuru+Cambridge+Layout+Indiranagar+Bengaluru+560008" 
-                target="_blank" 
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=SKY+Living+PG+for+Ladies+indiranagar"
+                target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider shadow transition"
               >
@@ -1106,16 +1389,18 @@ export default function App() {
             {/* Embedded Map */}
             <div className="lg:col-span-7">
               <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white h-96 relative bg-slate-100">
-                <iframe 
-                  title="Sky Living PG Location"
-                  src="https://maps.google.com/maps?q=307,%201st%20Cross%20Rd,%20Halasuru,%20Cambridge%20Layout,%20Indiranagar,%20Bengaluru,%20Karnataka%20560008&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                  className="w-full h-full border-0" 
-                  loading="lazy" 
-                  allowFullScreen
-                />
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0364602569766!2d77.63004437484128!3d12.96951878734566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1728f509088b%3A0x4743608c7cb953a8!2sSKY%20Living%20PG%20for%20Ladies%20indiranagar!5e0!3m2!1sen!2sin!4v1789560412052!5m2!1sen!2sin"
+                  width="800"
+                  height="600"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="SKY Living PG for Ladies Indiranagar"
+                ></iframe>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -1123,18 +1408,21 @@ export default function App() {
       {/* FAQS */}
       <section id="faq" className="py-16 md:py-20 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="text-center mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C2185B]">Resident Questions</span>
-            <h2 className="text-3xl font-serif font-bold text-[#2E0632]">Frequently Asked Questions</h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#C2185B]">
+              Resident Questions
+            </span>
+            <h2 className="text-3xl font-serif font-bold text-[#2E0632]">
+              Frequently Asked Questions
+            </h2>
           </div>
 
           <div className="space-y-3">
             {FAQS.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs"
                 >
                   <button
@@ -1143,7 +1431,7 @@ export default function App() {
                   >
                     <span>{faq.q}</span>
                     <span className="text-[#C2185B] ml-2 text-lg font-mono">
-                      {isOpen ? '−' : '+'}
+                      {isOpen ? "−" : "+"}
                     </span>
                   </button>
                   {isOpen && (
@@ -1155,16 +1443,13 @@ export default function App() {
               );
             })}
           </div>
-
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="bg-[#2E0632] text-slate-300 pt-16 pb-12 border-t border-pink-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-pink-900/40">
-            
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <BrandEmblem className="w-10 h-10" />
@@ -1172,11 +1457,14 @@ export default function App() {
                   <span className="font-serif text-xl font-bold text-white tracking-wide">
                     SKY <span className="text-pink-400 italic">Living</span>
                   </span>
-                  <span className="text-[10px] tracking-widest text-pink-300 font-semibold uppercase">PG FOR LADIES</span>
+                  <span className="text-[10px] tracking-widest text-pink-300 font-semibold uppercase">
+                    PG FOR LADIES
+                  </span>
                 </div>
               </div>
               <p className="text-xs text-pink-100/70 leading-relaxed">
-                Comfort • Safety • Care. Newly opened modern ladies accommodation in Cambridge Layout, Indiranagar.
+                Comfort • Safety • Care. Newly opened modern ladies
+                accommodation in Cambridge Layout, Indiranagar.
               </p>
               <div className="text-xs font-semibold text-pink-300">
                 A Home Away From Home ♥
@@ -1184,7 +1472,9 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider">Room Rates (Negotiable)</h4>
+              <h4 className="text-white font-bold text-xs uppercase tracking-wider">
+                Room Rates (Negotiable)
+              </h4>
               <ul className="space-y-2 text-xs">
                 <li>• 2 Sharing: Starts ₹14,000 / month</li>
                 <li>• 3 Sharing: Starts ₹13,000 / month</li>
@@ -1195,7 +1485,9 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider">Inclusions</h4>
+              <h4 className="text-white font-bold text-xs uppercase tracking-wider">
+                Inclusions
+              </h4>
               <ul className="space-y-1.5 text-xs text-pink-100/80">
                 <li>✓ 3 Times Daily Food (South & North)</li>
                 <li>✓ 3 Times Weekly Non-Veg (Chicken/Egg)</li>
@@ -1206,39 +1498,57 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider">Contact PG</h4>
+              <h4 className="text-white font-bold text-xs uppercase tracking-wider">
+                Contact PG
+              </h4>
               <div className="text-xs space-y-2 text-pink-100/80">
-                <p><strong>Address:</strong><br />307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru - 560008</p>
-                <p><strong>Manager Hotlines:</strong><br />
-                  <a href="tel:+918073328988" className="text-pink-300 hover:underline font-bold">8073328988</a> / 
-                  <a href="tel:+917780423848" className="text-pink-300 hover:underline font-bold ml-1">7780423848</a>
+                <p>
+                  <strong>Address:</strong>
+                  <br />
+                  307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar,
+                  Bengaluru - 560008
+                </p>
+                <p>
+                  <strong>Manager Hotlines:</strong>
+                  <br />
+                  <a
+                    href="tel:+918073328988"
+                    className="text-pink-300 hover:underline font-bold"
+                  >
+                    8073328988
+                  </a>{" "}
+                  /
+                  <a
+                    href="tel:+917780423848"
+                    className="text-pink-300 hover:underline font-bold ml-1"
+                  >
+                    7780423848
+                  </a>
                 </p>
               </div>
             </div>
-
           </div>
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-pink-200/60 gap-4">
             <div>© 2026 Sky Living PG for Ladies. All Rights Reserved.</div>
             <div>Cambridge Layout • Halasuru • Indiranagar, Bengaluru</div>
           </div>
-
         </div>
       </footer>
 
       {/* MOBILE STICKY BOTTOM QUICK BAR */}
       <div className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-pink-200 p-2.5 z-40 flex items-center justify-between gap-2 shadow-2xl md:hidden">
-        <a 
-          href="tel:+918073328988" 
+        <a
+          href="tel:+918073328988"
           className="flex-1 py-2.5 px-3 rounded-xl bg-[#4A0E4E] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow active:scale-95 transition"
         >
-          <Phone className="w-3.5 h-3.5" />
+          <Phone className="w-3.5 h-3.5 fill-current" />
           <span>Call: 8073328988</span>
         </a>
 
-        <a 
-          href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20want%20to%20know%20room%20availability%20and%20negotiable%20pricing." 
-          target="_blank" 
+        <a
+          href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20want%20to%20know%20room%20availability%20and%20negotiable%20pricing."
+          target="_blank"
           rel="noreferrer"
           className="flex-1 py-2.5 px-3 rounded-xl bg-[#25D366] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow active:scale-95 transition"
         >
@@ -1246,7 +1556,6 @@ export default function App() {
           <span>WhatsApp</span>
         </a>
       </div>
-
     </div>
   );
 }
