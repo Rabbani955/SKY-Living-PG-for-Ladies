@@ -306,10 +306,104 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FFFDFE] text-slate-800 font-sans selection:bg-[#E91E63] selection:text-white relative pb-20 md:pb-0">
       {/* FLOATING ACTION BUTTONS ON THE RIGHT SIDE: WHATSAPP CHAT & CALL BUTTON */}
-      <aside
-        aria-label="Direct Action Buttons"
-        className="fixed right-4 sm:right-6 bottom-24 md:bottom-8 z-50 flex flex-col items-end gap-3.5 pointer-events-auto"
-      >
+      {/* FLOATING CALL + WHATSAPP BUTTONS */}
+<aside
+  aria-label="Direct Action Buttons"
+  className="fixed right-3 sm:right-5 bottom-20 sm:bottom-6 z-[9999] flex flex-col items-center gap-4 pointer-events-auto"
+  style={{
+    paddingBottom: "env(safe-area-inset-bottom)",
+  }}
+>
+  {/* CALL BUTTON */}
+  <div className="relative group">
+    {/* Pulsing outer ring */}
+    <span className="absolute inset-0 rounded-full bg-[#4A0E4E] animate-ping opacity-40"></span>
+
+    <button
+      onClick={() => setCallModalOpen(true)}
+      aria-label="Call Sky Living PG"
+      className="
+        relative
+        w-14 h-14
+        sm:w-16 sm:h-16
+        rounded-full
+        bg-gradient-to-tr from-[#4A0E4E] via-[#7B1FA2] to-[#C2185B]
+        text-white
+        shadow-[0_8px_25px_rgba(74,14,78,0.45)]
+        border-2 border-white
+        flex items-center justify-center
+        hover:scale-110
+        active:scale-95
+        transition-all duration-300
+        animate-bounce
+      "
+    >
+      <Phone className="w-6 h-6 sm:w-7 sm:h-7 animate-pulse" />
+    </button>
+
+    {/* Label */}
+    <span
+      className="
+        absolute right-16 top-1/2 -translate-y-1/2
+        hidden sm:block
+        bg-[#2E0632] text-white
+        text-xs font-bold
+        px-3 py-2 rounded-lg
+        whitespace-nowrap shadow-lg
+        opacity-0 group-hover:opacity-100
+        transition-opacity
+      "
+    >
+      Call PG Manager
+    </span>
+  </div>
+
+  {/* WHATSAPP BUTTON */}
+  <div className="relative group">
+    {/* Pulsing outer ring */}
+    <span className="absolute -inset-1 rounded-full bg-green-500 animate-ping opacity-50"></span>
+
+    <a
+      href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20saw%20your%20website.%20I%20want%20to%20know%20about%20room%20availability%20and%20negotiable%20pricing."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Sky Living PG on WhatsApp"
+      className="
+        relative
+        w-14 h-14
+        sm:w-16 sm:h-16
+        rounded-full
+        bg-gradient-to-tr from-[#25D366] to-[#128C7E]
+        text-white
+        shadow-[0_8px_25px_rgba(37,211,102,0.45)]
+        border-2 border-white
+        flex items-center justify-center
+        hover:scale-110
+        active:scale-95
+        transition-all duration-300
+        animate-bounce
+      "
+    >
+      <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-current" />
+    </a>
+
+    {/* Label */}
+    <span
+      className="
+        absolute right-16 top-1/2 -translate-y-1/2
+        hidden sm:block
+        bg-[#075E54] text-white
+        text-xs font-bold
+        px-3 py-2 rounded-lg
+        whitespace-nowrap shadow-lg
+        opacity-0 group-hover:opacity-100
+        transition-opacity
+      "
+    >
+      WhatsApp
+    </span>
+  </div>
+</aside>
         {/* Floating Call Button with Pulsing Wave */}
         <div className="relative group">
           <button
@@ -320,7 +414,7 @@ export default function App() {
             <Phone className="w-6 h-6 animate-pulse" />
           </button>
           <span className="hidden group-hover:block absolute right-16 top-3 bg-slate-900/90 text-white text-[11px] font-semibold py-1 px-3 rounded-lg shadow-lg whitespace-nowrap">
-            Call PG Manager
+            Call PG OWNER
           </span>
         </div>
 
@@ -1111,7 +1205,7 @@ export default function App() {
                 </span>
               </div>
               <p className="text-xs text-slate-600">
-                Warm Rotis, Chicken Curry (3x/wk), Spicy Egg Curry, Veg Kurma,
+                Warm Rotis, Chicken Curry / Chicken Biriyani and Egg Curry (1/wk), Spicy Egg Curry, Veg Kurma,
                 Rasam & buttermilk.
               </p>
             </div>
