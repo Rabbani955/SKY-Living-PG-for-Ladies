@@ -31,6 +31,11 @@ import {
 // Image 4 uploaded by user: Building facade with glass panels and wooden finish
 import BUILDING_IMAGE from "./assets/Building.jpg";
 import LOGO_IMAGE from "./assets/Logo.png";
+
+import ROOM_2_SHARING from "./assets/2sharing.png";
+import ROOM_3_SHARING from "./assets/3sharing.png";
+import ROOM_4_SHARING from "./assets/4sharing.png";
+
 const FOOD_POSTER_IMAGE = "";
 const BANNER_IMAGE = "";
 const POSTER_IMAGE = "";
@@ -47,7 +52,7 @@ const ROOM_PLANS = [
     negotiableTag: "Price is Negotiable",
     badge: "High Demand",
     badgeColor: "bg-purple-600",
-    image: "src/assets/2sharing.png",
+    image: ROOM_2_SHARING,
     description:
       "Spacious twin luxury setup with extra privacy and personal study area.",
     features: [
@@ -66,7 +71,7 @@ const ROOM_PLANS = [
     negotiableTag: "Price is Negotiable",
     badge: "Most Popular",
     badgeColor: "bg-[#E91E63]",
-    image: "src/assets/3sharing.png",
+    image: ROOM_3_SHARING,
     description:
       "The optimal balance of social community, personal space, and value.",
     features: [
@@ -85,7 +90,7 @@ const ROOM_PLANS = [
     negotiableTag: "Price is Negotiable",
     badge: "Best Value",
     badgeColor: "bg-emerald-600",
-    image: "src/assets/4sharing.png",
+    image: ROOM_4_SHARING,
     description:
       "Most pocket-friendly accommodation in Cambridge Layout Indiranagar with premium amenities.",
     features: [
