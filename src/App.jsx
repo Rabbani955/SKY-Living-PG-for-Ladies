@@ -228,7 +228,7 @@ const FAQS = [
   },
   {
     q: "Where is the PG located in Bengaluru?",
-    a: "We are situated at: 307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. It is just 3 minutes away from Halasuru Metro Station and 4 minutes to 100 Feet Road, Indiranagar.",
+    a: "We are situated at: 306, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. It is just 3 minutes away from Halasuru Metro Station and 4 minutes to 100 Feet Road, Indiranagar.",
   },
   {
     q: "Is Non-Veg food served, and is self-cooking allowed?",
@@ -912,7 +912,7 @@ export default function App() {
                               SKY Living PG for Ladies
                             </h3>
                             <p className="text-[11px] text-pink-200">
-                              307, 1st Cross, Cambridge Layout, Indiranagar
+                              306, 1st Cross, Cambridge Layout, Indiranagar
                             </p>
                           </div>
                           <div className="text-right">
@@ -1991,7 +1991,7 @@ export default function App() {
                 <p className="text-slate-800 text-sm font-medium leading-relaxed">
                   <strong>Sky Living PG for Ladies</strong>
                   <br />
-                  307, 1st Cross Rd, Halasuru, Cambridge Layout,
+                  306, 1st Cross Rd, Halasuru, Cambridge Layout,
                   <br />
                   Indiranagar, Bengaluru, Karnataka 560008
                 </p>
@@ -2170,7 +2170,7 @@ export default function App() {
                 <p>
                   <strong>Address:</strong>
                   <br />
-                  307, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar,
+                  306, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar,
                   Bengaluru - 560008
                 </p>
                 <p>
