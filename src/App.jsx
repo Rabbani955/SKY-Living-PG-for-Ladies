@@ -228,7 +228,7 @@ const FAQS = [
   },
   {
     q: "Where is the PG located in Bengaluru?",
-    a: "We are situated at: 306, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. It is just 3 minutes away from Halasuru Metro Station and 4 minutes to 100 Feet Road, Indiranagar.",
+    a: "We are situated at: 306, 1st Cross Rd, Halasuru, Cambridge Layout, Indiranagar, Bengaluru, Karnataka 560008. We are near Indiranagar 100 Feet Road, just a 10-minute walk away, and Indiranagar Metro Station is also around a 10-minute walk from the PG.",
   },
   {
     q: "Is Non-Veg food served, and is self-cooking allowed?",
@@ -236,11 +236,20 @@ const FAQS = [
   },
   {
     q: "What are the main security precautions for ladies?",
-    a: "We have round-the-clock physical security guards stationed at the gate, full CCTV coverage on corridors and entrances, and biometric fingerprint access so only verified lady residents can enter.",
+    a: "The owners stay at the PG 24/7, so residents always have someone available for support. We also have CCTV coverage in common areas and entrances, along with secure access to help ensure a safe and comfortable environment for all our residents.",
   },
+
   {
     q: "Are Wi-Fi, electricity, and hot water charged separately?",
     a: "No hidden charges! Wi-Fi, 24/7 hot geyser water, passenger lift, laundry machines, and regular maintenance are all covered under your monthly rent.",
+  },
+  {
+    q: "What is the notice period for vacating the PG?",
+    a: "Residents are required to give 30 days' notice before vacating the PG. Please inform the management in advance so we can plan the room availability and complete the checkout process smoothly.",
+  },
+  {
+    q: "Can I visit the PG before booking?",
+    a: "Yes, you can visit the PG before making a booking. Please contact us to arrange a convenient time for a PG visit and to check the available rooms.",
   },
 ];
 
@@ -1152,50 +1161,216 @@ export default function App() {
             </p>
           </div>
 
-          {/* 24/7 SELF COOKING HIGHLIGHT */}
-          <div className="mb-8">
+          {/* ================= 24/7 SELF COOKING ================= */}
+          <div className="mb-10">
             <div
-              className="relative overflow-hidden rounded-2xl p-5 sm:p-6 border-2 border-orange-200 shadow-lg"
+              className="relative overflow-hidden rounded-[2rem] border-2 border-pink-200 shadow-xl"
               style={{
                 background:
-                  "linear-gradient(135deg, #fff7ed 0%, #fff1f2 50%, #fefce8 100%)",
+                  "linear-gradient(135deg, #fff8fb 0%, #fff4ed 45%, #fff8e8 100%)",
               }}
             >
-              {/* Animated glow */}
-              <div className="absolute -right-10 -top-10 w-32 h-32 bg-orange-300/20 rounded-full blur-3xl animate-pulse"></div>
+              {/* Decorative background circles */}
+              <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full bg-pink-300/20 blur-2xl" />
+              <div className="absolute right-20 -top-20 w-56 h-56 rounded-full bg-orange-200/30 blur-3xl" />
 
-              <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
-                {/* Cooking Icon */}
-                <div
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-md animate-bounce"
-                  style={{
-                    background: "linear-gradient(135deg, #f97316, #ea580c)",
-                  }}
-                >
-                  <span className="text-3xl sm:text-4xl">🍳</span>
+              <div className="relative grid grid-cols-1 lg:grid-cols-12 items-center">
+                {/* ================= LEFT 24/7 BADGE ================= */}
+                <div className="lg:col-span-3 flex flex-col items-center justify-center p-6 sm:p-8">
+                  <div
+                    className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full flex flex-col items-center justify-center border-8 border-pink-100 shadow-lg"
+                    style={{
+                      background: "linear-gradient(135deg, #ff3d81, #d81b60)",
+                    }}
+                  >
+                    <span className="text-3xl sm:text-4xl font-black text-white">
+                      24/7
+                    </span>
+
+                    <span className="text-sm font-bold tracking-widest text-white">
+                      OPEN
+                    </span>
+
+                    {/* rotating decorative ring */}
+                    <div
+                      className="absolute inset-[-10px] rounded-full border-2 border-dashed border-pink-400 animate-spin"
+                      style={{ animationDuration: "8s" }}
+                    />
+                  </div>
+
+                  <div className="mt-5 px-6 py-3 rounded-2xl bg-white/80 border border-pink-200 shadow-sm text-center">
+                    <p className="font-bold text-[#4A0E4E] text-sm">
+                      YOUR KITCHEN
+                    </p>
+                    <p className="font-bold text-[#C2185B] text-sm">
+                      YOUR TIME
+                    </p>
+                  </div>
                 </div>
 
-                {/* Text */}
-                <div>
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#4A0E4E]">
-                      24/7 SELF COOKING AVAILABLE
+                {/* ================= MAIN CONTENT ================= */}
+                <div className="lg:col-span-6 px-5 sm:px-8 lg:px-4 py-7 text-center lg:text-left">
+                  {/* Small badge */}
+                  <span
+                    className="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase"
+                    style={{
+                      background: "#fde1ec",
+                      color: "#d81b60",
+                    }}
+                  >
+                    COOK • EAT • BE HAPPY
+                  </span>
+
+                  {/* TITLE */}
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-4">
+                    <h3
+                      className="text-3xl sm:text-4xl font-black"
+                      style={{
+                        fontFamily: "Georgia, serif",
+                        color: "#4A0E4E",
+                      }}
+                    >
+                      24/7 Self Cooking Available
                     </h3>
 
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wide animate-pulse">
+                    <span className="px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold animate-pulse">
                       AVAILABLE
                     </span>
                   </div>
 
-                  <p className="mt-1 text-sm sm:text-base font-semibold text-orange-700">
+                  {/* SUBTITLE */}
+                  <p className="mt-3 text-xl sm:text-2xl font-bold text-[#E91E63]">
                     Cook Anytime • Day or Night
                   </p>
 
-                  <p className="mt-1 text-xs sm:text-sm text-slate-600">
-                    Use our self-cooking facility whenever you want and prepare
-                    your favourite meals at your convenience.
+                  {/* DESCRIPTION */}
+                  <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                    Use our fully equipped self-cooking kitchen whenever you
+                    want and prepare your favourite meals at your convenience.
                   </p>
+
+                  {/* FEATURE BADGES */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mt-6">
+                    {/* FEATURE 1 */}
+                    <div className="rounded-2xl bg-white/80 border border-pink-200 p-3 text-center shadow-sm">
+                      <Utensils className="w-6 h-6 mx-auto text-pink-500" />
+
+                      <p className="mt-2 text-xs font-bold text-[#4A0E4E]">
+                        Fully Equipped
+                      </p>
+
+                      <p className="text-[10px] text-slate-500">Kitchen</p>
+                    </div>
+
+                    {/* FEATURE 2 */}
+                    <div className="rounded-2xl bg-white/80 border border-purple-200 p-3 text-center shadow-sm">
+                      <span className="text-2xl">🍳</span>
+
+                      <p className="mt-1 text-xs font-bold text-[#4A0E4E]">
+                        Cook Your
+                      </p>
+
+                      <p className="text-[10px] text-slate-500">
+                        Favourite Food
+                      </p>
+                    </div>
+
+                    {/* FEATURE 3 */}
+                    <div className="rounded-2xl bg-white/80 border border-emerald-200 p-3 text-center shadow-sm">
+                      <Clock className="w-6 h-6 mx-auto text-emerald-500" />
+
+                      <p className="mt-2 text-xs font-bold text-[#4A0E4E]">
+                        No Time
+                      </p>
+
+                      <p className="text-[10px] text-slate-500">Restriction</p>
+                    </div>
+
+                    {/* FEATURE 4 */}
+                    <div className="rounded-2xl bg-white/80 border border-pink-200 p-3 text-center shadow-sm">
+                      <Heart className="w-6 h-6 mx-auto text-pink-500 fill-current" />
+
+                      <p className="mt-2 text-xs font-bold text-[#4A0E4E]">
+                        Clean & Safe
+                      </p>
+
+                      <p className="text-[10px] text-slate-500">Environment</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* ================= RIGHT KITCHEN AREA ================= */}
+                <div className="lg:col-span-3 relative min-h-[230px] lg:min-h-[280px] flex items-center justify-center overflow-hidden">
+                  {/* Kitchen illustration */}
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    {/* Counter */}
+                    <div className="absolute bottom-8 left-5 right-5 h-5 rounded-full bg-gradient-to-r from-[#d6a56f] to-[#f3c58d] shadow-lg" />
+
+                    {/* Stove */}
+                    <div className="absolute bottom-12 w-36 h-5 bg-slate-800 rounded-lg">
+                      <div className="absolute left-8 -top-1 w-16 h-3 rounded-full bg-slate-600" />
+                    </div>
+
+                    {/* Cooking Pot */}
+                    <div className="relative mt-[-25px]">
+                      {/* Steam */}
+                      <div className="absolute -top-20 left-8 flex gap-3">
+                        <span className="text-4xl animate-pulse">♨️</span>
+                      </div>
+
+                      {/* Pot */}
+                      <div className="w-32 h-20 rounded-b-[2rem] rounded-t-xl bg-gradient-to-b from-slate-300 to-slate-500 shadow-xl border-4 border-slate-400">
+                        <div className="absolute -top-3 left-5 right-5 h-5 rounded-full bg-slate-700" />
+
+                        <div className="absolute top-2 left-8 right-8 h-2 rounded-full bg-slate-400" />
+                      </div>
+                    </div>
+
+                    {/* Food ingredients */}
+                    <div className="absolute bottom-16 left-8 flex gap-2 text-2xl">
+                      <span>🍅</span>
+                      <span>🥕</span>
+                      <span>🥦</span>
+                    </div>
+
+                    {/* GOOD FOOD MESSAGE */}
+                    <div className="absolute top-5 right-4 text-center">
+                      <p
+                        className="text-lg sm:text-xl font-bold italic"
+                        style={{
+                          fontFamily: "Georgia, serif",
+                          color: "#6b277d",
+                        }}
+                      >
+                        Good Food
+                      </p>
+
+                      <p
+                        className="text-lg sm:text-xl font-bold italic"
+                        style={{
+                          fontFamily: "Georgia, serif",
+                          color: "#6b277d",
+                        }}
+                      >
+                        Good Mood
+                      </p>
+
+                      <p className="text-pink-500 text-xl">Always! ♥</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= BOTTOM MESSAGE ================= */}
+              <div
+                className="relative px-5 py-3 text-center font-bold text-sm sm:text-base"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #fce0eb, #fff1f5, #fce0eb)",
+                  color: "#6b277d",
+                }}
+              >
+                🍳 Cook Anytime • Your Kitchen • Your Time • Your Comfort ❤️
               </div>
             </div>
           </div>
@@ -2062,7 +2237,7 @@ export default function App() {
                 <p className="text-slate-800 text-sm font-medium leading-relaxed">
                   <strong>Sky Living PG for Ladies</strong>
                   <br />
-                  307, 1st Cross Rd, Halasuru, Cambridge Layout,
+                  306, 1st Cross Rd, Halasuru, Cambridge Layout,
                   <br />
                   Indiranagar, Bengaluru, Karnataka 560008
                 </p>
