@@ -2262,47 +2262,72 @@ export default function App() {
 
               {/* ================= NEARBY PLACES ================= */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-                {/* HALASURU */}
+                {/* INDIRANAGAR METRO */}
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
                   <div className="font-bold text-slate-800 text-sm">
-                    Halasuru Metro
+                    Indiranagar Metro Station
                   </div>
-
                   <div className="text-[#C2185B] font-semibold text-[11px]">
-                    ~ 3 mins walk
+                    ~ 10 mins walk
                   </div>
                 </div>
 
                 {/* 100 FEET ROAD */}
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
                   <div className="font-bold text-slate-800 text-sm">
-                    100 Feet Rd Indiranagar
+                    100 Feet Rd, Indiranagar
                   </div>
-
                   <div className="text-[#C2185B] font-semibold text-[11px]">
-                    ~ 4 mins away
+                    ~ 7 mins walk
                   </div>
                 </div>
 
-                {/* MG ROAD */}
+                {/* CAFES, PUBS & SHOPPING */}
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
                   <div className="font-bold text-slate-800 text-sm">
-                    MG Road / Trinity
+                    Indiranagar Cafes, Pubs & Shopping
                   </div>
-
                   <div className="text-[#C2185B] font-semibold text-[11px]">
-                    ~ 8 mins away
+                    Nearby
                   </div>
                 </div>
 
-                {/* BAGMANE */}
+                {/* BUS STOP */}
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
                   <div className="font-bold text-slate-800 text-sm">
-                    Bagmane Tech Park
+                    Bus Stop
                   </div>
-
                   <div className="text-[#C2185B] font-semibold text-[11px]">
-                    Quick Commute
+                    ~ 10 mins walk
+                  </div>
+                </div>
+
+                {/* DOMLUR */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">Domlur</div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    ~ 5 mins walk
+                  </div>
+                </div>
+
+                {/* EMBASSY GOLF LINKS */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">
+                    Embassy GolfLinks Tech Park
+                  </div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    ~ 2.5 km away
+                  </div>
+                </div>
+
+                {/* STARTUP COMPANIES */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0 sm:col-span-2">
+                  <div className="font-bold text-slate-800 text-sm">
+                    Indiranagar Startup & Business Areas
+                  </div>
+                  <div className="text-[#C2185B] font-semibold text-[11px]">
+                    Many startup offices and business hubs are within ~10–15
+                    mins walk
                   </div>
                 </div>
               </div>
