@@ -47,7 +47,7 @@ const ROOM_PLANS = [
   {
     type: "2 Sharing",
     title: "Double Sharing Room",
-    price: "14,000",
+    price: "15,000",
     strikePrice: "₹15,500",
     negotiableTag: "Price is Negotiable",
     badge: "High Demand",
@@ -85,7 +85,7 @@ const ROOM_PLANS = [
   {
     type: "4 Sharing",
     title: "Four Sharing Room",
-    price: "10,000",
+    price: "11,000",
     strikePrice: "₹11,500",
     negotiableTag: "Price is Negotiable",
     badge: "Best Value",
