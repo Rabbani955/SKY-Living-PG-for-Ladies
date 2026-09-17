@@ -305,106 +305,211 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FFFDFE] text-slate-800 font-sans selection:bg-[#E91E63] selection:text-white relative pb-20 md:pb-0">
-      {/* FLOATING ACTION BUTTONS ON THE RIGHT SIDE: WHATSAPP CHAT & CALL BUTTON */}
       {/* FLOATING CALL + WHATSAPP BUTTONS */}
-<aside
-  aria-label="Direct Action Buttons"
-  className="fixed right-3 sm:right-5 bottom-20 sm:bottom-6 z-[9999] flex flex-col items-center gap-4 pointer-events-auto"
-  style={{
-    paddingBottom: "env(safe-area-inset-bottom)",
-  }}
->
-  {/* CALL BUTTON */}
-  <div className="relative group">
-    {/* Pulsing outer ring */}
-    <span className="absolute inset-0 rounded-full bg-[#4A0E4E] animate-ping opacity-40"></span>
+      <aside
+        aria-label="Direct Action Buttons"
+        style={{
+          position: "fixed",
+          right: "12px",
+          bottom: "90px",
+          zIndex: 999999,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "14px",
+          width: "60px",
+        }}
+      >
+        {/* CALL BUTTON */}
+        <button
+          type="button"
+          onClick={() => setCallModalOpen(true)}
+          aria-label="Call Sky Living PG"
+          style={{
+            position: "relative",
+            width: "58px",
+            height: "58px",
+            minWidth: "58px",
+            minHeight: "58px",
+            borderRadius: "50%",
+            border: "3px solid white",
+            background: "linear-gradient(135deg, #4A0E4E, #7B1FA2, #C2185B)",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.35)",
+            cursor: "pointer",
+            padding: 0,
+            margin: 0,
+            flexShrink: 0,
+            animation: "skyFloatCall 2.5s ease-in-out infinite",
+            WebkitTapHighlightColor: "transparent",
+          }}
+        >
+          <Phone size={27} strokeWidth={2.5} />
 
-    <button
-      onClick={() => setCallModalOpen(true)}
-      aria-label="Call Sky Living PG"
-      className="
-        relative
-        w-14 h-14
-        sm:w-16 sm:h-16
-        rounded-full
-        bg-gradient-to-tr from-[#4A0E4E] via-[#7B1FA2] to-[#C2185B]
-        text-white
-        shadow-[0_8px_25px_rgba(74,14,78,0.45)]
-        border-2 border-white
-        flex items-center justify-center
-        hover:scale-110
-        active:scale-95
-        transition-all duration-300
-        animate-bounce
-      "
-    >
-      <Phone className="w-6 h-6 sm:w-7 sm:h-7 animate-pulse" />
-    </button>
+          {/* CALL PULSE */}
+          <span
+            style={{
+              position: "absolute",
+              inset: "-5px",
+              borderRadius: "50%",
+              border: "3px solid #C2185B",
+              animation: "skyCallPulse 1.8s infinite",
+              pointerEvents: "none",
+            }}
+          />
+        </button>
 
-    {/* Label */}
-    <span
-      className="
-        absolute right-16 top-1/2 -translate-y-1/2
-        hidden sm:block
-        bg-[#2E0632] text-white
-        text-xs font-bold
-        px-3 py-2 rounded-lg
-        whitespace-nowrap shadow-lg
-        opacity-0 group-hover:opacity-100
-        transition-opacity
-      "
-    >
-      Call PG Manager
-    </span>
-  </div>
+        {/* WHATSAPP BUTTON */}
+        <a
+          href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20want%20to%20know%20about%20room%20availability."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with Sky Living PG on WhatsApp"
+          style={{
+            position: "relative",
+            width: "58px",
+            height: "58px",
+            minWidth: "58px",
+            minHeight: "58px",
+            borderRadius: "50%",
+            border: "3px solid white",
+            background: "#25D366",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.35)",
+            textDecoration: "none",
+            padding: 0,
+            margin: 0,
+            flexShrink: 0,
+            animation: "skyFloatWhatsapp 2.5s ease-in-out infinite",
+            WebkitTapHighlightColor: "transparent",
+          }}
+        >
+          {/* ORIGINAL WHATSAPP LOGO */}
+          <svg
+            viewBox="0 0 32 32"
+            width="34"
+            height="34"
+            fill="white"
+            aria-hidden="true"
+          >
+            <path d="M19.11 17.21c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.32-1.57-1.47-1.84-.15-.27-.02-.42.11-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.11 2.81c.14.18 1.92 2.93 4.65 4.11.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.83-1.27.23-.63.23-1.16.16-1.27-.07-.11-.25-.18-.52-.32z" />
+            <path d="M16.03 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.39 1.63 6.24L3.2 28.8l6.73-1.76a12.73 12.73 0 0 0 6.1 1.56h.01c7.06 0 12.8-5.74 12.8-12.8S23.1 3.2 16.03 3.2zm0 23.3h-.01a10.5 10.5 0 0 1-5.35-1.46l-.38-.23-3.99 1.04 1.07-3.89-.25-.4a10.5 10.5 0 1 1 8.91 4.94z" />
+          </svg>
 
-  {/* WHATSAPP BUTTON */}
-  <div className="relative group">
-    {/* Pulsing outer ring */}
-    <span className="absolute -inset-1 rounded-full bg-green-500 animate-ping opacity-50"></span>
+          {/* WHATSAPP PULSE */}
+          <span
+            style={{
+              position: "absolute",
+              inset: "-5px",
+              borderRadius: "50%",
+              border: "3px solid #25D366",
+              animation: "skyWhatsappPulse 1.8s infinite",
+              pointerEvents: "none",
+            }}
+          />
+        </a>
+      </aside>
 
-    <a
-      href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20saw%20your%20website.%20I%20want%20to%20know%20about%20room%20availability%20and%20negotiable%20pricing."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with Sky Living PG on WhatsApp"
-      className="
-        relative
-        w-14 h-14
-        sm:w-16 sm:h-16
-        rounded-full
-        bg-gradient-to-tr from-[#25D366] to-[#128C7E]
-        text-white
-        shadow-[0_8px_25px_rgba(37,211,102,0.45)]
-        border-2 border-white
-        flex items-center justify-center
-        hover:scale-110
-        active:scale-95
-        transition-all duration-300
-        animate-bounce
-      "
-    >
-      <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-current" />
-    </a>
+      <style>
+        {`
+    /* CALL: gentle up/down movement */
+    @keyframes skyFloatCall {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
 
-    {/* Label */}
-    <span
-      className="
-        absolute right-16 top-1/2 -translate-y-1/2
-        hidden sm:block
-        bg-[#075E54] text-white
-        text-xs font-bold
-        px-3 py-2 rounded-lg
-        whitespace-nowrap shadow-lg
-        opacity-0 group-hover:opacity-100
-        transition-opacity
-      "
-    >
-      WhatsApp
-    </span>
-  </div>
-</aside>
-  
+    /* WHATSAPP: gentle opposite movement */
+    @keyframes skyFloatWhatsapp {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(7px);
+      }
+    }
+
+    /* CALL pulse */
+    @keyframes skyCallPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+      70% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+    }
+
+    /* WHATSAPP pulse */
+    @keyframes skyWhatsappPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+      70% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+    }
+  `}
+      </style>
+
+      {/* FLOATING BUTTON ANIMATIONS */}
+      <style>
+        {`
+    @keyframes skyCallPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+
+      70% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+    }
+
+    @keyframes skyWhatsappPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+
+      70% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+    }
+  `}
+      </style>
 
       {/* QUICK CALL NUMBERS MODAL POPUP */}
       {callModalOpen && (
@@ -1089,94 +1194,575 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOD SECTION (3 TIMES DAILY + NON-VEG 3X WEEKLY) */}
+      {/* ================= ORIGINAL SKY LIVING PG FOOD MENU ================= */}
       <section
         id="food"
-        className="py-16 md:py-24 bg-[#FFF9FB] border-t border-pink-100"
+        className="py-14 md:py-20 border-t border-pink-100"
+        style={{
+          background:
+            "linear-gradient(180deg, #fff8fb 0%, #fffdfd 45%, #fff5f9 100%)",
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E91E63] bg-pink-100 px-3 py-1 rounded-full">
-              Nutritious • Homemade • Hygienic • Delicious
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2E0632]">
-              3 Times Homely Food Daily
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base">
-              Freshly prepared with pure ingredients. We serve both{" "}
-              <strong>South & North Indian meals</strong> with Non-Veg
-              preparations <strong>3 times every week</strong>.
-            </p>
+          {/* ================= MENU HEADER ================= */}
+          <div className="relative overflow-hidden rounded-[2rem] border border-pink-200 bg-white shadow-xl mb-8">
+            {/* Decorative flowers */}
+            <div className="absolute -left-10 -top-10 w-40 h-40 rounded-full bg-pink-100/60 blur-3xl"></div>
+            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-purple-100/60 blur-3xl"></div>
+
+            <div className="relative p-6 sm:p-8 md:p-10">
+              <div className="grid md:grid-cols-12 gap-6 items-center">
+                {/* LOGO */}
+                <div className="md:col-span-4 flex justify-center">
+                  <div
+                    className="relative rounded-full p-2 shadow-lg"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f7b6d2, #ffffff, #e9b8e8)",
+                    }}
+                  >
+                    <div className="bg-white rounded-full p-3 border-2 border-pink-200">
+                      <img
+                        src={LOGO_IMAGE}
+                        alt="Sky Living PG for Ladies"
+                        className="w-36 h-36 sm:w-44 sm:h-44 object-contain rounded-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* TITLE */}
+                <div className="md:col-span-8 text-center">
+                  <div
+                    className="inline-block px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase mb-4"
+                    style={{
+                      background: "#fde1ec",
+                      color: "#d81b60",
+                    }}
+                  >
+                    Healthy • Hygienic • Homemade
+                  </div>
+
+                  <h2
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"
+                    style={{
+                      fontFamily: "Georgia, serif",
+                      color: "#421052",
+                    }}
+                  >
+                    FOOD MENU
+                  </h2>
+
+                  <div className="flex items-center justify-center gap-3 my-3">
+                    <span className="h-px w-12 bg-pink-300"></span>
+                    <Heart className="w-5 h-5 text-pink-500 fill-current" />
+                    <span className="h-px w-12 bg-pink-300"></span>
+                  </div>
+
+                  <p
+                    className="text-xl sm:text-2xl font-semibold"
+                    style={{ color: "#5a286b" }}
+                  >
+                    Healthy • Hygienic • Homemade
+                  </p>
+
+                  {/* Monthly change ribbon */}
+                  <div className="mt-5 flex justify-center">
+                    <div
+                      className="px-6 py-2.5 font-bold text-xs sm:text-sm uppercase tracking-wide text-white"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, #8e246f, #5b176d, #8e246f)",
+                        clipPath:
+                          "polygon(4% 0, 96% 0, 100% 50%, 96% 100%, 4% 100%, 0 50%)",
+                      }}
+                    >
+                      FOOD MAY DIFFER MONTHLY TWICE
+                    </div>
+                  </div>
+
+                  {/* Comfort / Safety / Care */}
+                  <div className="grid grid-cols-3 gap-2 sm:gap-6 mt-7 max-w-xl mx-auto">
+                    <div className="text-center">
+                      <div className="w-12 h-12 mx-auto rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                        <Utensils className="w-6 h-6 text-pink-500" />
+                      </div>
+                      <p className="mt-2 text-xs sm:text-sm font-bold text-[#5a286b]">
+                        COMFORT
+                      </p>
+                    </div>
+
+                    <div className="text-center border-x border-pink-200">
+                      <div className="w-12 h-12 mx-auto rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                        <ShieldCheck className="w-6 h-6 text-pink-500" />
+                      </div>
+                      <p className="mt-2 text-xs sm:text-sm font-bold text-[#5a286b]">
+                        SAFETY
+                      </p>
+                    </div>
+
+                    <div className="text-center">
+                      <div className="w-12 h-12 mx-auto rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                        <Heart className="w-6 h-6 text-pink-500 fill-current" />
+                      </div>
+                      <p className="mt-2 text-xs sm:text-sm font-bold text-[#5a286b]">
+                        CARE
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {FOOD_SPECIALS.map((dish, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl p-4 border border-pink-100 shadow-xs hover:shadow-md transition flex flex-col justify-between"
-              >
+          {/* ================= DESKTOP WEEKLY MENU ================= */}
+          <div className="hidden md:block bg-white rounded-3xl overflow-hidden shadow-xl border border-pink-200">
+            {/* TABLE HEADER */}
+            <div
+              className="grid grid-cols-4 text-white font-bold"
+              style={{
+                background: "linear-gradient(90deg, #df3977, #e44c83, #d83775)",
+              }}
+            >
+              <div className="p-4 text-center text-lg">DAY</div>
+              <div className="p-4 text-center text-lg">BREAKFAST</div>
+              <div className="p-4 text-center text-lg">LUNCH</div>
+              <div className="p-4 text-center text-lg">DINNER</div>
+            </div>
+
+            {/* MONDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-5 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md">
+                  MONDAY
+                </span>
+              </div>
+
+              <div className="p-5 flex items-center text-sm text-slate-700">
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md uppercase text-white ${
-                        dish.type === "Non-Veg"
-                          ? "bg-[#E91E63]"
-                          : "bg-emerald-600"
-                      }`}
-                    >
-                      {dish.type}
-                    </span>
-                    <span className="text-[10px] text-pink-600 font-semibold">
-                      Homestyle
-                    </span>
+                  <p>Dosa</p>
+                  <p>Chutney</p>
+                </div>
+              </div>
+
+              <div className="p-5 flex items-center text-sm text-slate-700">
+                <div>
+                  <p>Rice</p>
+                  <p>Any Veg Curry</p>
+                  <p>Rasam</p>
+                </div>
+              </div>
+
+              <div className="p-5 flex items-center text-sm text-slate-700">
+                <div>
+                  <p>Pulka / Roti / Rice</p>
+                  <p>Leaf Pal / Any Fry Item</p>
+                </div>
+              </div>
+            </div>
+
+            {/* TUESDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-5 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md">
+                  TUESDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Idly</p>
+                <p>Sambar</p>
+                <p>Chutney</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Tomato Rice</p>
+                <p>Mango Rice</p>
+                <p>Chutney</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Veg Kurma / Rice</p>
+                <p>Pulka / Sambar</p>
+                <p>Rasam</p>
+              </div>
+            </div>
+
+            {/* WEDNESDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-4 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md text-sm">
+                  WEDNESDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Puri</p>
+                <p>Aloo Channa Masala</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Rice</p>
+                <p>Any Veg Curry</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <span className="inline-block mb-1 text-[10px] font-bold bg-pink-500 text-white px-2 py-1 rounded-full">
+                  NON-VEG
+                </span>
+                <p>Egg Rice</p>
+                <p>Veg Rice</p>
+              </div>
+            </div>
+
+            {/* THURSDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-4 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md text-sm">
+                  THURSDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Pasta / Poha /</p>
+                <p>Bismilla Bath</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Rice</p>
+                <p>Veg Curry</p>
+                <p>Dal / Chips</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Pulka / Sambar</p>
+                <p>Rice / Fry Item</p>
+              </div>
+            </div>
+
+            {/* FRIDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-5 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md">
+                  FRIDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Dosa</p>
+                <p>Chutney</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Rice</p>
+                <p>Veg Curry</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <span className="inline-block mb-2 text-[10px] font-bold bg-pink-500 text-white px-2 py-1 rounded-full">
+                  NON-VEG
+                </span>
+
+                <p>Rice / Egg Curry /</p>
+                <p>Rajma / Mushroom /</p>
+                <p>Chapathi / Bannana</p>
+              </div>
+            </div>
+
+            {/* SATURDAY */}
+            <div className="grid grid-cols-4 border-b border-pink-100">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-4 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md text-sm">
+                  SATURDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Chapathi /</p>
+                <p>Green Batani Kurma</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Dal / Chutney /</p>
+                <p>Papad / Rice</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Veg Biryani / Raita /</p>
+                <p>Sweet / Lemon Rice /</p>
+                <p>Baji</p>
+              </div>
+            </div>
+
+            {/* SUNDAY */}
+            <div className="grid grid-cols-4">
+              <div className="p-5 flex items-center justify-center bg-pink-50">
+                <span className="px-5 py-4 rounded-xl bg-gradient-to-br from-[#df3977] to-[#ef5b91] text-white font-bold shadow-md">
+                  SUNDAY
+                </span>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Lemon Rice /</p>
+                <p>Upma / Pasta / Noodles</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <p>Rice / Sambar /</p>
+                <p>Fry Item</p>
+              </div>
+
+              <div className="p-5 text-sm text-slate-700">
+                <span className="inline-block mb-1 text-[10px] font-bold bg-pink-500 text-white px-2 py-1 rounded-full">
+                  NON-VEG
+                </span>
+                <p>Chicken Curry /</p>
+                <p>Chicken Biryani /</p>
+                <p>Veg Biryani</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ================= MOBILE MENU ================= */}
+          <div className="md:hidden space-y-4">
+            {[
+              {
+                day: "MONDAY",
+                breakfast: ["Dosa", "Chutney"],
+                lunch: ["Rice", "Any Veg Curry", "Rasam"],
+                dinner: ["Pulka / Roti / Rice", "Leaf Pal / Any Fry Item"],
+              },
+              {
+                day: "TUESDAY",
+                breakfast: ["Idly", "Sambar", "Chutney"],
+                lunch: ["Tomato Rice", "Mango Rice", "Chutney"],
+                dinner: ["Veg Kurma / Rice", "Pulka / Sambar", "Rasam"],
+              },
+              {
+                day: "WEDNESDAY",
+                breakfast: ["Puri", "Aloo Channa Masala"],
+                lunch: ["Rice", "Any Veg Curry"],
+                dinner: ["Egg Rice", "Veg Rice"],
+                nonVeg: true,
+              },
+              {
+                day: "THURSDAY",
+                breakfast: ["Pasta / Poha /", "Bismilla Bath"],
+                lunch: ["Rice", "Veg Curry", "Dal / Chips"],
+                dinner: ["Pulka / Sambar", "Rice / Fry Item"],
+              },
+              {
+                day: "FRIDAY",
+                breakfast: ["Dosa", "Chutney"],
+                lunch: ["Rice", "Veg Curry"],
+                dinner: [
+                  "Rice / Egg Curry /",
+                  "Rajma / Mushroom /",
+                  "Chapathi / Bannana",
+                ],
+              },
+              {
+                day: "SATURDAY",
+                breakfast: ["Chapathi /", "Green Batani Kurma"],
+                lunch: ["Dal / Chutney /", "Papad / Rice"],
+                dinner: [
+                  "Veg Biryani / Raita /",
+                  "Sweet / Lemon Rice /",
+                  "Baji",
+                ],
+              },
+              {
+                day: "SUNDAY",
+                breakfast: ["Lemon Rice /", "Upma / Pasta / Noodles"],
+                lunch: ["Rice / Sambar /", "Fry Item"],
+                dinner: ["Chicken Curry /", "Chicken Biryani /", "Veg Biryani"],
+                nonVeg: true,
+              },
+            ].map((item) => (
+              <div
+                key={item.day}
+                className="bg-white rounded-2xl overflow-hidden border border-pink-200 shadow-md"
+              >
+                {/* DAY HEADER */}
+                <div
+                  className="py-3 text-center text-white font-bold tracking-wide"
+                  style={{
+                    background: "linear-gradient(90deg, #df3977, #e44c83)",
+                  }}
+                >
+                  {item.day}
+                </div>
+
+                <div className="p-4 space-y-4">
+                  {/* BREAKFAST */}
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 flex-shrink-0 rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                      <Coffee className="w-5 h-5 text-pink-500" />
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-[#4A0E4E]">Breakfast</h4>
+
+                      <p className="text-sm text-slate-600 mt-1">
+                        {item.breakfast.map((food, i) => (
+                          <React.Fragment key={i}>
+                            {food}
+                            {i < item.breakfast.length - 1 && <br />}
+                          </React.Fragment>
+                        ))}
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="font-serif font-bold text-slate-800 text-base">
-                    {dish.name}
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-1">{dish.desc}</p>
+
+                  {/* LUNCH */}
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 flex-shrink-0 rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                      <Utensils className="w-5 h-5 text-pink-500" />
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-[#4A0E4E]">Lunch</h4>
+
+                      <p className="text-sm text-slate-600 mt-1">
+                        {item.lunch.map((food, i) => (
+                          <React.Fragment key={i}>
+                            {food}
+                            {i < item.lunch.length - 1 && <br />}
+                          </React.Fragment>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* DINNER */}
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 flex-shrink-0 rounded-full bg-pink-50 border border-pink-200 flex items-center justify-center">
+                      <Utensils className="w-5 h-5 text-pink-500" />
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-[#4A0E4E]">
+                        Dinner
+                        {item.nonVeg && (
+                          <span className="ml-2 text-[9px] bg-pink-500 text-white px-2 py-1 rounded-full">
+                            NON-VEG
+                          </span>
+                        )}
+                      </h4>
+
+                      <p className="text-sm text-slate-600 mt-1">
+                        {item.dinner.map((food, i) => (
+                          <React.Fragment key={i}>
+                            {food}
+                            {i < item.dinner.length - 1 && <br />}
+                          </React.Fragment>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Meals Timings Cards */}
-          <div className="mt-10 grid sm:grid-cols-3 gap-6">
-            <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-bold text-[#4A0E4E]">Breakfast</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+          {/* ================= BOTTOM NOTE ================= */}
+          <div className="mt-8 grid md:grid-cols-2 gap-5">
+            <div
+              className="rounded-2xl p-5 border border-pink-200"
+              style={{
+                background: "linear-gradient(135deg, #fff0f6, #fff9fc)",
+              }}
+            >
+              <div className="flex gap-4 items-center">
+                <div className="w-14 h-14 rounded-full bg-white border border-pink-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <Calendar className="w-7 h-7 text-[#6b277d]" />
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-[#4A0E4E]">Menu Changes</h4>
+
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                    Food items may change twice in a month based on availability
+                    & seasonal variations to bring more variety & taste.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="rounded-2xl p-5 border border-pink-200 flex items-center justify-center text-center"
+              style={{
+                background: "linear-gradient(135deg, #fff0f6, #fdf4ff)",
+              }}
+            >
+              <div>
+                <p
+                  className="text-2xl sm:text-3xl font-bold"
+                  style={{
+                    fontFamily: "Georgia, serif",
+                    color: "#6b277d",
+                  }}
+                >
+                  Good Food • Good Mood
+                </p>
+
+                <p
+                  className="text-xl sm:text-2xl font-semibold mt-1"
+                  style={{
+                    fontFamily: "Georgia, serif",
+                    color: "#df3977",
+                  }}
+                >
+                  Happy You! 💕
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* ================= MEAL TIMINGS ================= */}
+          <div className="mt-8 grid sm:grid-cols-3 gap-4">
+            <div className="bg-white rounded-2xl p-5 border border-pink-200 shadow-sm">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h4 className="font-bold text-[#4A0E4E]">Breakfast</h4>
+
+                <span className="text-[10px] sm:text-xs font-bold text-pink-700 bg-pink-50 px-2 py-1 rounded-lg whitespace-nowrap">
                   7:30 AM - 10:00 AM
                 </span>
               </div>
-              <p className="text-xs text-slate-600">
+
+              <p className="text-xs sm:text-sm text-slate-600">
                 Hot Chapathis, Idli, Dosa, Poha, Upma, Poori, with filter coffee
                 & tea.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-bold text-[#4A0E4E]">Lunch</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+            <div className="bg-white rounded-2xl p-5 border border-pink-200 shadow-sm">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h4 className="font-bold text-[#4A0E4E]">Lunch</h4>
+
+                <span className="text-[10px] sm:text-xs font-bold text-pink-700 bg-pink-50 px-2 py-1 rounded-lg whitespace-nowrap">
                   12:30 PM - 3:00 PM
                 </span>
               </div>
-              <p className="text-xs text-slate-600">
+
+              <p className="text-xs sm:text-sm text-slate-600">
                 Fresh Rotis, Rice, Dal Tadka, Drumstick Sambar, Vegetable
-                Poriyal & Curd. (Lunch packing allowed).
+                Poriyal & Curd.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white border border-pink-200 shadow-xs">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-bold text-[#4A0E4E]">Dinner</span>
-                <span className="text-[11px] bg-pink-50 text-pink-700 font-semibold px-2 py-0.5 rounded">
+            <div className="bg-white rounded-2xl p-5 border border-pink-200 shadow-sm">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h4 className="font-bold text-[#4A0E4E]">Dinner</h4>
+
+                <span className="text-[10px] sm:text-xs font-bold text-pink-700 bg-pink-50 px-2 py-1 rounded-lg whitespace-nowrap">
                   7:30 PM - 10:00 PM
                 </span>
               </div>
-              <p className="text-xs text-slate-600">
-                Warm Rotis, Chicken Curry / Chicken Biriyani and Egg Curry (1/wk), Spicy Egg Curry, Veg Kurma,
-                Rasam & buttermilk.
+
+              <p className="text-xs sm:text-sm text-slate-600">
+                Warm Rotis, Chicken Curry / Chicken Biriyani, Egg Curry, Veg
+                Kurma, Rasam & buttermilk.
               </p>
             </div>
           </div>
