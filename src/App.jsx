@@ -224,7 +224,7 @@ const FOOD_SPECIALS = [
 const FAQS = [
   {
     q: "How does the negotiable pricing work?",
-    a: "Our base monthly tariffs are 2 Sharing starting from ₹14,000, 3 Sharing from ₹13,000, and 4 Sharing from ₹10,000. Rent is openly negotiable depending on your move-in date, payment plan, and stay duration when you visit our premises.",
+    a: "Our base monthly tariffs are 2 Sharing starting from ₹15,000, 3 Sharing from ₹13,000, and 4 Sharing from ₹11,000. Rent is openly negotiable depending on your move-in date, payment plan, and stay duration when you visit our premises.",
   },
   {
     q: "Where is the PG located in Bengaluru?",
@@ -277,7 +277,7 @@ export default function App() {
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [sharingType, setSharingType] = useState(
-    "2 Sharing (Starts ₹14,000 - Negotiable)",
+    "2 Sharing (Starts ₹15,000 - Negotiable)",
   );
   const [moveDate, setMoveDate] = useState("");
   const [foodType, setFoodType] = useState("Veg & Non-Veg (3x weekly)");
@@ -631,7 +631,7 @@ export default function App() {
                       2 Sharing
                     </div>
                     <div className="font-serif font-bold text-base text-[#4A0E4E]">
-                      Starts ₹14,000
+                      Starts ₹15,000
                     </div>
                     <div className="text-[10px] text-emerald-600 font-bold">
                       Negotiable
@@ -653,7 +653,7 @@ export default function App() {
                       4 Sharing
                     </div>
                     <div className="font-serif font-bold text-base text-[#4A0E4E]">
-                      Starts ₹10,000
+                      Starts ₹11,000
                     </div>
                     <div className="text-[10px] text-emerald-600 font-bold">
                       Negotiable
@@ -768,7 +768,7 @@ export default function App() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="p-2 border-r border-pink-800/50">
               <div className="text-xl sm:text-2xl font-serif font-bold text-amber-300">
-                ₹10,000*
+                ₹11,000*
               </div>
               <div className="text-[11px] uppercase tracking-wider text-pink-100">
                 Starts From (Negotiable)
@@ -940,13 +940,13 @@ export default function App() {
           {/* Negotiable Price Notice Banner */}
           <div className="mt-10 bg-white border border-pink-200 rounded-2xl p-4 shadow-xs text-center text-xs text-[#4A0E4E] font-semibold flex flex-wrap items-center justify-center gap-6">
             <span>
-              ✨ <strong>2 Sharing:</strong> Starts ₹14,000 (Negotiable)
+              ✨ <strong>2 Sharing:</strong> Starts ₹15,000 (Negotiable)
             </span>
             <span>
               ✨ <strong>3 Sharing:</strong> Starts ₹13,000 (Negotiable)
             </span>
             <span>
-              ✨ <strong>4 Sharing:</strong> Starts ₹10,000 (Negotiable)
+              ✨ <strong>4 Sharing:</strong> Starts ₹11,000 (Negotiable)
             </span>
             <span>✨ Zero Brokerage (Direct Owner PG)</span>
             <span>✨ 3x Daily Food + Wi-Fi Included</span>
@@ -1223,14 +1223,14 @@ export default function App() {
                         onChange={(e) => setSharingType(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#4A0E4E] bg-white"
                       >
-                        <option value="2 Sharing (Starts ₹14,000 - Negotiable)">
-                          2 Sharing (Starts ₹14,000)
+                        <option value="2 Sharing (Starts ₹15,000 - Negotiable)">
+                          2 Sharing (Starts ₹15,000)
                         </option>
                         <option value="3 Sharing (Starts ₹13,000 - Negotiable)">
                           3 Sharing (Starts ₹13,000)
                         </option>
-                        <option value="4 Sharing (Starts ₹10,000 - Negotiable)">
-                          4 Sharing (Starts ₹10,000)
+                        <option value="4 Sharing (Starts ₹11,000 - Negotiable)">
+                          4 Sharing (Starts ₹11,000)
                         </option>
                         <option value="Any Available Bed">
                           Any Available Bed
@@ -1481,9 +1481,9 @@ export default function App() {
                 Room Rates (Negotiable)
               </h4>
               <ul className="space-y-2 text-xs">
-                <li>• 2 Sharing: Starts ₹14,000 / month</li>
+                <li>• 2 Sharing: Starts ₹15,000 / month</li>
                 <li>• 3 Sharing: Starts ₹13,000 / month</li>
-                <li>• 4 Sharing: Starts ₹10,000 / month</li>
+                <li>• 4 Sharing: Starts ₹11,000 / month</li>
                 <li>• Price Negotiable on Booking Visit</li>
                 <li>• Zero Brokerage Direct Contact</li>
               </ul>
