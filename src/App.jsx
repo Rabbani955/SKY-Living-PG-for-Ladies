@@ -782,7 +782,7 @@ export default function App() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-[#2E0632] tracking-tight leading-[1.12]">
                 A Home Away From Home <br />
                 <span className="bg-gradient-to-r from-[#4A0E4E] via-[#C2185B] to-[#E91E63] bg-clip-text text-transparent italic font-normal">
-                  Exclusively For Ladies
+                  Exclusively For Ladies at Indiranagar
                 </span>
               </h1>
 
@@ -1150,6 +1150,54 @@ export default function App() {
               Everything you need for peaceful, comfortable living without any
               hidden utility charges.
             </p>
+          </div>
+
+          {/* 24/7 SELF COOKING HIGHLIGHT */}
+          <div className="mb-8">
+            <div
+              className="relative overflow-hidden rounded-2xl p-5 sm:p-6 border-2 border-orange-200 shadow-lg"
+              style={{
+                background:
+                  "linear-gradient(135deg, #fff7ed 0%, #fff1f2 50%, #fefce8 100%)",
+              }}
+            >
+              {/* Animated glow */}
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-orange-300/20 rounded-full blur-3xl animate-pulse"></div>
+
+              <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
+                {/* Cooking Icon */}
+                <div
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-md animate-bounce"
+                  style={{
+                    background: "linear-gradient(135deg, #f97316, #ea580c)",
+                  }}
+                >
+                  <span className="text-3xl sm:text-4xl">🍳</span>
+                </div>
+
+                {/* Text */}
+                <div>
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#4A0E4E]">
+                      24/7 SELF COOKING AVAILABLE
+                    </h3>
+
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wide animate-pulse">
+                      AVAILABLE
+                    </span>
+                  </div>
+
+                  <p className="mt-1 text-sm sm:text-base font-semibold text-orange-700">
+                    Cook Anytime • Day or Night
+                  </p>
+
+                  <p className="mt-1 text-xs sm:text-sm text-slate-600">
+                    Use our self-cooking facility whenever you want and prepare
+                    your favourite meals at your convenience.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -1967,78 +2015,124 @@ export default function App() {
         </div>
       </section>
 
-      {/* LOCATION & GOOGLE MAP */}
+      {/* ================= LOCATION & GOOGLE MAP ================= */}
       <section
         id="location"
-        className="py-16 md:py-20 bg-white border-t border-pink-100"
+        className="py-12 sm:py-16 md:py-20 bg-white border-t border-pink-100 w-full overflow-hidden"
+        style={{
+          width: "100%",
+          maxWidth: "100vw",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5 space-y-6">
+        <div
+          className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          style={{
+            maxWidth: "100%",
+            overflow: "hidden",
+          }}
+        >
+          {/* LOCATION CONTENT */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* LEFT SIDE */}
+            <div className="lg:col-span-5 min-w-0 space-y-6">
+              {/* LOCATION LABEL */}
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#C2185B]">
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+
                 <span>Prime Cambridge Layout Location</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#2E0632]">
+              {/* HEADING */}
+              <h2
+                className="text-3xl sm:text-4xl font-serif font-bold text-[#2E0632]"
+                style={{
+                  overflowWrap: "break-word",
+                  wordBreak: "normal",
+                }}
+              >
                 Easy Access to Metros & IT Hubs
               </h2>
 
-              <div className="p-5 rounded-2xl bg-pink-50 border border-pink-100 space-y-2">
+              {/* OFFICIAL ADDRESS */}
+              <div className="p-5 rounded-2xl bg-pink-50 border border-pink-100 space-y-2 w-full">
                 <div className="text-xs font-bold uppercase text-[#4A0E4E] tracking-wider">
                   Official PG Address
                 </div>
+
                 <p className="text-slate-800 text-sm font-medium leading-relaxed">
                   <strong>Sky Living PG for Ladies</strong>
                   <br />
-                  306, 1st Cross Rd, Halasuru, Cambridge Layout,
+                  307, 1st Cross Rd, Halasuru, Cambridge Layout,
                   <br />
                   Indiranagar, Bengaluru, Karnataka 560008
                 </p>
-                <div className="pt-2 text-xs text-slate-600 flex items-center gap-4">
-                  <a href="tel:+918073328988" className="hover:underline">
+
+                {/* PHONE NUMBERS */}
+                <div className="pt-2 text-xs text-slate-600 flex flex-wrap items-center gap-4">
+                  <a
+                    href="tel:+918073328988"
+                    className="hover:underline whitespace-nowrap"
+                  >
                     📞 <strong>8073328988</strong>
                   </a>
-                  <a href="tel:+917780423848" className="hover:underline">
+
+                  <a
+                    href="tel:+917780423848"
+                    className="hover:underline whitespace-nowrap"
+                  >
                     📱 <strong>7780423848</strong>
                   </a>
                 </div>
               </div>
 
-              {/* Transit Distance Grid */}
-              <div className="grid grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">Halasuru Metro</div>
+              {/* ================= NEARBY PLACES ================= */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                {/* HALASURU */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">
+                    Halasuru Metro
+                  </div>
+
                   <div className="text-[#C2185B] font-semibold text-[11px]">
                     ~ 3 mins walk
                   </div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">
+
+                {/* 100 FEET ROAD */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">
                     100 Feet Rd Indiranagar
                   </div>
+
                   <div className="text-[#C2185B] font-semibold text-[11px]">
                     ~ 4 mins away
                   </div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">
+
+                {/* MG ROAD */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">
                     MG Road / Trinity
                   </div>
+
                   <div className="text-[#C2185B] font-semibold text-[11px]">
                     ~ 8 mins away
                   </div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="font-bold text-slate-800">
+
+                {/* BAGMANE */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 min-w-0">
+                  <div className="font-bold text-slate-800 text-sm">
                     Bagmane Tech Park
                   </div>
+
                   <div className="text-[#C2185B] font-semibold text-[11px]">
                     Quick Commute
                   </div>
                 </div>
               </div>
 
+              {/* GOOGLE MAPS BUTTON */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=SKY+Living+PG+for+Ladies+indiranagar"
                 target="_blank"
@@ -2046,24 +2140,35 @@ export default function App() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider shadow transition"
               >
                 <MapPin className="w-4 h-4 text-pink-400" />
+
                 <span>Open in Google Maps</span>
+
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
-            {/* Embedded Map */}
-            <div className="lg:col-span-7">
-              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white h-96 relative bg-slate-100">
+            {/* ================= MAP ================= */}
+            <div className="lg:col-span-7 w-full min-w-0">
+              <div
+                className="rounded-3xl overflow-hidden shadow-xl border-4 border-white relative bg-slate-100 w-full"
+                style={{
+                  height: "420px",
+                  maxWidth: "100%",
+                }}
+              >
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0364602569766!2d77.63004437484128!3d12.96951878734566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1728f509088b%3A0x4743608c7cb953a8!2sSKY%20Living%20PG%20for%20Ladies%20indiranagar!5e0!3m2!1sen!2sin!4v1789560412052!5m2!1sen!2sin"
-                  width="800"
-                  height="600"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
                   title="SKY Living PG for Ladies Indiranagar"
-                ></iframe>
+                  loading="lazy"
+                  allowFullScreen=""
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    border: 0,
+                    display: "block",
+                  }}
+                />
               </div>
             </div>
           </div>
