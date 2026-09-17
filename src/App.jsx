@@ -304,7 +304,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDFE] text-slate-800 font-sans selection:bg-[#E91E63] selection:text-white relative pb-20 md:pb-0">
+    <div
+      className="min-h-screen w-full max-w-none bg-[#FFFDFE] text-slate-800 font-sans selection:bg-[#E91E63] selection:text-white relative pb-20 md:pb-0"
+      style={{
+        width: "100vw",
+        maxWidth: "100vw",
+        margin: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        overflowX: "hidden",
+      }}
+    >
       {/* FLOATING CALL + WHATSAPP BUTTONS */}
       <aside
         aria-label="Direct Action Buttons"

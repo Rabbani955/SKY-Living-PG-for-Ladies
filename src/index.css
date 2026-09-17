@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+/* ================= MOBILE FULL WIDTH FIX ================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
