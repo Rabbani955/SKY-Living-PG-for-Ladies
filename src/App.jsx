@@ -404,37 +404,7 @@ export default function App() {
     </span>
   </div>
 </aside>
-        {/* Floating Call Button with Pulsing Wave */}
-        <div className="relative group">
-          <button
-            onClick={() => setCallModalOpen(!callModalOpen)}
-            aria-label="Call Sky Living PG Managers"
-            className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#4A0E4E] via-[#7B1FA2] to-[#C2185B] text-white shadow-2xl hover:shadow-pink-900/40 flex items-center justify-center transition-all duration-300 transform hover:scale-110 border-2 border-white focus:outline-none"
-          >
-            <Phone className="w-6 h-6 animate-pulse" />
-          </button>
-          <span className="hidden group-hover:block absolute right-16 top-3 bg-slate-900/90 text-white text-[11px] font-semibold py-1 px-3 rounded-lg shadow-lg whitespace-nowrap">
-            Call PG OWNER
-          </span>
-        </div>
-
-        {/* Floating WhatsApp Chat Button with Ring Ripple */}
-        <div className="relative group">
-          <span className="absolute -inset-1 rounded-full bg-emerald-500 opacity-60 animate-ping"></span>
-          <a
-            href="https://wa.me/918073328988?text=Hello%20Sky%20Living%20PG%2C%20I%20saw%20your%20website.%20I%20want%20to%20know%20about%20room%20availability%20and%20negotiable%20pricing."
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Chat on WhatsApp"
-            className="relative w-15 h-15 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center transition-all duration-300 transform hover:scale-110 border-2 border-white focus:outline-none"
-          >
-            <MessageCircle className="w-7 h-7 fill-current" />
-          </a>
-          <span className="hidden group-hover:block absolute right-18 top-3.5 bg-[#075E54] text-white text-[11px] font-semibold py-1 px-3 rounded-lg shadow-lg whitespace-nowrap">
-            WhatsApp Direct Chat
-          </span>
-        </div>
-      </aside>
+  
 
       {/* QUICK CALL NUMBERS MODAL POPUP */}
       {callModalOpen && (
